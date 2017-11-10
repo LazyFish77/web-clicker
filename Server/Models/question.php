@@ -68,6 +68,7 @@ class Question {
     }
 
     public function save($db=FALSE) {
+        // $db is a Database object (optional)
         $ret = FALSE;
         if (!$db) {
             $disconnect_when_done = TRUE;
@@ -87,7 +88,7 @@ class Question {
                 $this->description,
                 $this->grader,
                 $this->section,
-                $this->keywords,
+                implode(" ", $this->keywords),
                 $this->start_timestamp,
                 $this->end_timestamp,
                 $this->class_average,
