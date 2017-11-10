@@ -35,7 +35,7 @@ class User {
             print("An error occurred while trying to log in.");
         }
         if (isset($disconnect_when_done)) {
-            $db.disconnect();
+            $db->disconnect();
         }
         return $ret;
     }
@@ -58,7 +58,7 @@ class User {
             print("An error occurred while trying to log in.");
         }
         if (isset($disconnect_when_done)) {
-            $db.disconnect();
+            $db->disconnect();
         }
         return $ret;
     }
@@ -94,7 +94,7 @@ class User {
                 exit("An error occurred while attempting to change a password.");
             }
             if (isset($disconnect_when_done)) {
-                $db.disconnect();
+                $db->disconnect();
             }
         }
         return $ret;
@@ -119,7 +119,7 @@ class User {
                 print("An error occurred while attempting to answer the question.");
             }
             if (isset($disconnect_when_done)) {
-                $db.disconnect();
+                $db->disconnect();
             }
         }
         return $ret;

@@ -15,9 +15,9 @@
             $password = $_POST["password"];
             $accountType = $_POST["accounttype"] === "Student" ? STUDENT : INSTRUCTOR;
             $db = new Database();
-            $user = $db.get_user($userName);
-            $db.disconnect();
-            if ($user && $user.verify_password($password) && $user->type === $accountType) {
+            $user = $db->get_user($userName);
+            $db->disconnect();
+            if ($user && $user->verify_password($password) && $user->type === $accountType) {
                 if($accountType === "Student") {
                     readfile('../Student/next-question.html');
                 } else {

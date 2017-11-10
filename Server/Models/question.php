@@ -41,7 +41,7 @@ class Question {
             return FALSE;
         }
         if (isset($disconnect_when_done)) {
-            $db.disconnect();
+            $db->disconnect();
         }
     }
 
@@ -63,7 +63,7 @@ class Question {
             return FALSE;
         }
         if (isset($disconnect_when_done)) {
-            $db.disconnect();
+            $db->disconnect();
         }
     }
 
@@ -98,7 +98,7 @@ class Question {
             print("An error occurred while attempting to save a question.");
         }
         if (isset($disconnect_when_done)) {
-            $db.disconnect();
+            $db->disconnect();
         }
         return $ret;
     }
@@ -126,7 +126,7 @@ class Question {
             print("An error occurred while attempting to delete a question.");
         }
         if (isset($disconnect_when_done)) {
-            $db.disconnect();
+            $db->disconnect();
         }
         return $ret;
     }
