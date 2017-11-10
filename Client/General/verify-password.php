@@ -8,20 +8,23 @@
         <title>Lab 5</title>
     </head>
     <body>
-        <?php 
+        <?php
+            require_once("../../Server/constants.php");
+            require_once("../../Server/database.php");
             $userName = $_POST["username"];
-            $passWord = $_POST["password"];
-            $accountType = $_POST["accounttype"];
-            $email = $userName."@uwosh.edu";
-            if(verifyUserBelongsToDatabase($userName, $passWord)) {
-                
+            $password = $_POST["password"];
+            $accountType = $_POST["accounttype"] === "Student" ? STUDENT : INSTRUCTOR;
+            $db = new Database();
+            $user = $db.get_user($userName);
+            $db.disconnect();
+            if ($user && $user.verify_password($password) && $user->type === $accountType) {
                 if($accountType === "Student") {
                     readfile('../Student/next-question.html');
                 } else {
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                echo"failed to log in";
+                echo"Failed to log in.";
                 return;
             }
         ?>
@@ -39,10 +42,4 @@
             </div>
         </footer>
     </body>
-    <?php 
-        function verifyUserBelongsToDatabase($name, $password) {
-            //this code checks the db 
-            return true;
-        }
-    ?>
 </html>
