@@ -25,6 +25,7 @@ class Question {
 
     public function activate($db=FALSE) {
         // $db is a Database object (optional)
+        $ret = FALSE;
         if (!$db) {
             $disconnect_when_done = TRUE;
             $db = new Database();
@@ -35,18 +36,19 @@ class Question {
             $query = "UPDATE questions WHERE id=? SET status=?, start_timestamp=?";
             $ps = $db->get()->prepare($query);
             $ps->execute([$this->id, $this->status, $this->start_timestamp]);
-            return TRUE;
+            $ret = TRUE;
         } catch (PDOException $e) {
             print("An error occurred while activating a question.");
-            return FALSE;
         }
         if (isset($disconnect_when_done)) {
             $db->disconnect();
         }
+        return $ret;
     }
 
     public function deactivate($db=FALSE) {
         // $db is a Database object (optional)
+        $ret = FALSE;
         if (!$db) {
             $disconnect_when_done = TRUE;
             $db = new Database();
@@ -57,14 +59,14 @@ class Question {
             $query = "UPDATE questions WHERE id=? SET status=?, end_timestamp=?";
             $ps = $db->get()->prepare($query);
             $ps->execute([$this->id, $this->status, $this->end_timestamp]);
-            return TRUE;
+            $ret = TRUE;
         } catch (PDOException $e) {
             print("An error occurred while deactivating a question.");
-            return FALSE;
         }
         if (isset($disconnect_when_done)) {
             $db->disconnect();
         }
+        return $ret;
     }
 
     public function save($db=FALSE) {
