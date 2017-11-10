@@ -9,7 +9,6 @@
     </head>
     <body>
         <?php
-            require_once("../../Server/constants.php");
             require_once("../../Server/database.php");
             $userName = $_POST["username"];
             $password = $_POST["password"];
