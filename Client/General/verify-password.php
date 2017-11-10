@@ -18,7 +18,7 @@
             $user = $db->get_user($userName);
             $db->disconnect();
             if ($user && $user->verify_password($password) && $user->type === $accountType) {
-                if($accountType === "Student") {
+                if($accountType === STUDENT) {
                     readfile('../Student/next-question.html');
                 } else {
                     readfile('../Instructor/create-question.html');
