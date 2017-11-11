@@ -141,7 +141,7 @@ class Database {
                     implode(" ", $question['keywords']), // Given as an array of strings, so
                                                          // we must condense it into a space-
                                                          // delimited string
-                    NULL, NULL, 0.0, 0
+                    NULL, NULL
                 ]);
             } catch (PDOException $e) {
                 print("An error occurred while trying to create a new question.");

@@ -3,7 +3,6 @@ require_once(SITE_ROOT . "/Server/database.php");
 class Question {
     public $id, $status, $type, $prompt, $points, $description;
     public $grader, $section, $keywords, $start_timestamp, $end_timestamp;
-    public $class_average, $num_correct_answers;
 
     public function __construct($pdo_statement) {
         // $pdo_statement is a PDOStatement object which corresponds to
@@ -101,8 +100,8 @@ class Question {
         try {
             $query = "UPDATE questions SET status=?, question_type=?" .
                         "question=?, points=?, description=?, grader=?, section=?,
-                        section=?, keywords=?, start_timestamp=?, end_timestamp=?,
-                        class_average=?, num_correct_answers=? WHERE id=?";
+                        section=?, keywords=?, start_timestamp=?, end_timestamp=? " .
+                        "WHERE id=?";
             $ps = $db->get()->prepare($query);
             $ps->execute([
                 $this->status,
@@ -115,8 +114,6 @@ class Question {
                 implode(" ", $this->keywords),
                 $start_ts,
                 $end_ts,
-                $this->class_average,
-                $this->num_correct_answers,
                 $this->id
             ]);
             $ret = TRUE;
