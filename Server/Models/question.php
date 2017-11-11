@@ -8,11 +8,11 @@ class Question {
     public function __construct($pdo_statement) {
         // $pdo_statement is a PDOStatement object which corresponds to
         // a single row from the 'questions' database table
-        $this->id = $pdo_statement['id'];
-        $this->status = $pdo_statement['status'];
-        $this->type = $pdo_statement['question_type'];
+        $this->id = intval($pdo_statement['id']);
+        $this->status = intval($pdo_statement['status']);
+        $this->type = intval($pdo_statement['question_type']);
         $this->prompt = $pdo_statement['question'];
-        $this->points = $pdo_statement['points'];
+        $this->points = intval($pdo_statement['points']);
         $this->description = $pdo_statement['description'];
         $this->grader = $pdo_statement['grader'];
         $this->section = $pdo_statement['section'];
