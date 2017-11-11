@@ -1,4 +1,6 @@
 <?php
+define("SITE_ROOT", "/var/www/students/walbrc28/web-clicker"); // Change this depending on your host
+
 // Database constants
 define("DB_DSN", "mysql:dbname=team2;host=localhost");
 define("DB_USER", "team2");
@@ -20,4 +22,5 @@ define("HASH_ALGORITHM", "sha256"); // A parameter for PHP's built-in hash() fun
 define("ANSWER_MARKER", "%%%"); // This is a string we will include in our PHP grader
                                 // code to be replaced by a given answer it is supposed
                                 // to evaluate.
+define("TIMEZONE", "America/Mexico_City");
 ?>

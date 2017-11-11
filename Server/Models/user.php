@@ -1,6 +1,5 @@
 <?php
-require_once("../constants.php");
-require_once("../database.php");
+require_once(SITE_ROOT . "/Server/database.php");
 class User {
     public $username, $password, $num_pw_changes, $email, $type;
     public $last_login, $last_logout;
@@ -10,11 +9,19 @@ class User {
         // a single row from the 'users' database table
         $this->username = $pdo_statement['username'];
         $this->password = $pdo_statement['password'];
-        $this->num_pw_changes = $pdo_statement['num_pw_changes'];
+        $this->num_pw_changes = intval($pdo_statement['num_pw_changes']);
         $this->email = $pdo_statement['email'];
-        $this->type = $pdo_statement['type'];
-        $this->last_login = $pdo_statement['last_login'];
-        $this->last_logout = $pdo_statement['last_logout'];
+        $this->type = intval($pdo_statement['type']);
+        $time = $pdo_statement['last_login'];
+        if (isset($time) && $time !== NULL) {
+            $this->last_login = date_create_from_format('Y-m-d H:i:s',
+                                        $time, new DateTimeZone(TIMEZONE));
+        }
+        $time = $pdo_statement['last_logout'];
+        if (isset($time) && $time !== NULL) {
+            $this->last_logout = date_create_from_format('Y-m-d H:i:s',
+                                        $time, new DateTimeZone(TIMEZONE));
+        }
     }
 
     public function log_in($db=FALSE) {
@@ -25,13 +32,15 @@ class User {
             $disconnect_when_done = TRUE;
             $db = new Database();
         }
-        $timestamp = date("Y-m-d H:i:s");
+        $now = new DateTime("now", new DateTimeZone(TIMEZONE));
+        $timestamp = $now->format("Y-m-d H:i:s");
         try {
-            $query = "UPDATE users WHERE username=? SET last_login=?";
+            $query = "UPDATE users SET last_login=? WHERE username=?";
             $ps = $db->get()->prepare($query);
-            $ps->execute([$this->username, $timestamp]);
+            $ps->execute([$timestamp, $this->username]);
             $ret = TRUE;
         } catch (PDOException $e) {
+            print($e);
             print("An error occurred while trying to log in.");
         }
         if (isset($disconnect_when_done)) {
@@ -48,11 +57,12 @@ class User {
             $disconnect_when_done = TRUE;
             $db = new Database();
         }
-        $timestamp = date("Y-m-d H:i:s");
+        $now = new DateTime("now", new DateTimeZone(TIMEZONE));
+        $timestamp = $now->format("Y-m-d H:i:s");
         try {
-            $query = "UPDATE users WHERE username=? SET last_logout=?";
+            $query = "UPDATE users SET last_logout=? WHERE username=?";
             $ps = $db->get()->prepare($query);
-            $ps->execute([$this->username, $timestamp]);
+            $ps->execute([$timestamp, $this->username]);
             $ret = TRUE;
         } catch (PDOException $e) {
             print("An error occurred while trying to log in.");
@@ -86,9 +96,9 @@ class User {
             $this->password = $hashed_pass;
             $this->num_pw_changes++;
             try {
-                $query = "UPDATE users WHERE username=? SET password=?, num_pw_changes=?";
+                $query = "UPDATE users SET password=?, num_pw_changes=? WHERE username=?";
                 $ps = $db->get()->prepare($query);
-                $ps->execute([$this->username, $this->password, $this->num_pw_changes]);
+                $ps->execute([$this->password, $this->num_pw_changes, $this->username]);
                 $ret = TRUE;
             } catch (PDOException $e) {
                 exit("An error occurred while attempting to change a password.");

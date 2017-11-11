@@ -1,13 +1,12 @@
 <?php
-require_once("constants.php");
-require_once("models/user.php");
-require_once("models/question.php");
+require_once(SITE_ROOT . "/Server/Models/user.php");
+require_once(SITE_ROOT . "/Server/Models/question.php");
 class Database {
     private $connection = NULL;
 
     public function __construct() {
         try {
-            $this->connection = new PDO(DB_DSN, DB_USER, DB_PWD,
+            $this->connection = new PDO(DB_DSN, DB_USER, DB_PW,
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         } catch (PDOException $e) {
             exit("Failed to connect to the database.");

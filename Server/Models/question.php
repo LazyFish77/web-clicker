@@ -1,6 +1,5 @@
 <?php
-require_once("../constants.php");
-require_once("../database.php");
+require_once(SITE_ROOT . "/Server/database.php");
 class Question {
     public $id, $status, $type, $prompt, $points, $description;
     public $grader, $section, $keywords, $start_timestamp, $end_timestamp;
@@ -20,7 +19,16 @@ class Question {
         // Note: $this->keywords is an array of strings, however in the database
         // the keywords are stored as space-delimited strings. Don't get this confused!
         $this->keywords = explode(" ", $pdo_statement['keywords']);
-        $this->start_timestamp = $pdo_statement['start_timestamp'];
+        $time = $pdo_statement['start_timestamp'];
+        if (isset($time) && $time !== NULL) {
+            $this->start_timestamp = date_create_from_format('Y-m-d H:i:s',
+                                        $time, new DateTimeZone(TIMEZONE));
+        }
+        $time = $pdo_statement['end_timestamp'];
+        if (isset($time) && $time !== NULL) {
+            $this->end_timestamp = date_create_from_format('Y-m-d H:i:s',
+                                        $time, new DateTimeZone(TIMEZONE));
+        }
     }
 
     public function activate($db=FALSE) {
@@ -31,11 +39,13 @@ class Question {
             $db = new Database();
         }
         $this->status = ACTIVE;
-        $this->start_timestamp = date("Y-m-d H:i:s");
+        $now = new DateTime("now", new DateTimeZone(TIMEZONE));
+        $timestamp = $now->format("Y-m-d H:i:s");
+        $this->start_timestamp = $now;
         try {
-            $query = "UPDATE questions WHERE id=? SET status=?, start_timestamp=?";
+            $query = "UPDATE questions SET status=?, start_timestamp=? WHERE id=?";
             $ps = $db->get()->prepare($query);
-            $ps->execute([$this->id, $this->status, $this->start_timestamp]);
+            $ps->execute([$this->status, $this->start_timestamp, $this->id]);
             $ret = TRUE;
         } catch (PDOException $e) {
             print("An error occurred while activating a question.");
@@ -54,11 +64,13 @@ class Question {
             $db = new Database();
         }
         $this->status = INACTIVE;
-        $this->end_timestamp = date("Y-m-d H:i:s");
+        $now = new DateTime("now", new DateTimeZone(TIMEZONE));
+        $timestamp = $now->format("Y-m-d H:i:s");
+        $this->end_timestamp = $now;
         try {
-            $query = "UPDATE questions WHERE id=? SET status=?, end_timestamp=?";
+            $query = "UPDATE questions SET status=?, end_timestamp=? WHERE id=?";
             $ps = $db->get()->prepare($query);
-            $ps->execute([$this->id, $this->status, $this->end_timestamp]);
+            $ps->execute([$this->status, $this->end_timestamp, $this->id]);
             $ret = TRUE;
         } catch (PDOException $e) {
             print("An error occurred while deactivating a question.");
@@ -76,13 +88,23 @@ class Question {
             $disconnect_when_done = TRUE;
             $db = new Database();
         }
+        if (isset($this->start_timestamp) && $this->start_timestamp !== NULL) {
+            $start_ts = $this->start_timestamp->format("Y-m-d H:i:s");
+        } else {
+            $start_ts = NULL;
+        }
+        if (isset($this->end_timestamp) && $this->end_timestamp !== NULL) {
+            $end_ts = $this->end_timestamp->format("Y-m-d H:i:s");
+        } else {
+            $end_ts = NULL;
+        }
         try {
-            $query = "UPDATE questions WHERE id=? SET status=?, question_type=?" .
+            $query = "UPDATE questions SET status=?, question_type=?" .
                         "question=?, points=?, description=?, grader=?, section=?,
-                        section=?, keywords=?, start_timestamp=?, end_timestamp=?";
+                        section=?, keywords=?, start_timestamp=?, end_timestamp=?,
+                        class_average=?, num_correct_answers=? WHERE id=?";
             $ps = $db->get()->prepare($query);
             $ps->execute([
-                $this->id,
                 $this->status,
                 $this->type,
                 $this->prompt,
@@ -91,10 +113,11 @@ class Question {
                 $this->grader,
                 $this->section,
                 implode(" ", $this->keywords),
-                $this->start_timestamp,
-                $this->end_timestamp,
+                $start_ts,
+                $end_ts,
                 $this->class_average,
-                $this->num_correct_answers
+                $this->num_correct_answers,
+                $this->id
             ]);
             $ret = TRUE;
         } catch (PDOException $e) {

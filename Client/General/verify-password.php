@@ -9,7 +9,8 @@
     </head>
     <body>
         <?php
-            require_once("../../Server/database.php");
+            require_once("../../Server/constants.php"); // Must always import this before using the database API
+            require_once(SITE_ROOT . "/Server/database.php");
             $userName = $_POST["username"];
             $password = $_POST["password"];
             $accountType = $_POST["accounttype"] === "Student" ? STUDENT : INSTRUCTOR;
@@ -17,13 +18,14 @@
             $user = $db->get_user($userName);
             $db->disconnect();
             if ($user && $user->verify_password($password) && $user->type === $accountType) {
+                $user->log_in();
                 if($accountType === STUDENT) {
                     readfile('../Student/next-question.html');
                 } else {
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                echo"Failed to log in.";
+                echo"Login failed; your credentials were invalid.";
                 return;
             }
         ?>
