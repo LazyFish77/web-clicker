@@ -138,7 +138,9 @@ class Database {
                     $question['description'],
                     $question['grader'],
                     $question['section'],
-                    $question['keywords'],
+                    implode(" ", $question['keywords']), // Given as an array of strings, so
+                                                         // we must condense it into a space-
+                                                         // delimited string
                     $question['start_timestamp'],
                     $question['end_timestamp'],
                     0.0, 0
