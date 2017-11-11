@@ -117,17 +117,17 @@ class Database {
 
     public function create_question($question) {
         // $question is an associative array with key-value pairs corresponding
-        // to the fields in the 'questions' table of the database, NOT counting
-        // the 2 defaultable fields, class_average and num_correct_answers
+        // to the fields in the 'questions' table of the database (NOT counting
+        // the 4 defaultable fields; see the database table for more information)
         // To save/delete a question, see the Question class
         if (isset($question) && $question !== NULL) {
-            if (count($question) !== 11) {
+            if (count($question) !== 9) {
                 // We need exactly 1 item in the array per table column
                 print("An error occurred while trying to create a new question.");
                 return;
             }
             try {
-                $query = "INSERT INTO questions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                $query = "INSERT INTO questions VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                 $ps = $this->connection->prepare($query);
                 $ps->execute([
                     $question['id'],
@@ -141,9 +141,7 @@ class Database {
                     implode(" ", $question['keywords']), // Given as an array of strings, so
                                                          // we must condense it into a space-
                                                          // delimited string
-                    $question['start_timestamp'],
-                    $question['end_timestamp'],
-                    0.0, 0
+                    NULL, NULL, 0.0, 0
                 ]);
             } catch (PDOException $e) {
                 print("An error occurred while trying to create a new question.");
