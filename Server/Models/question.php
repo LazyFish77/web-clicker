@@ -3,6 +3,7 @@ require_once(SITE_ROOT . "/Server/database.php");
 class Question {
     public $id, $status, $type, $prompt, $points, $description;
     public $grader, $section, $keywords, $start_timestamp, $end_timestamp;
+    public $options;
 
     public function __construct($pdo_statement) {
         // $pdo_statement is a PDOStatement object which corresponds to
@@ -11,6 +12,7 @@ class Question {
         $this->status = intval($pdo_statement['status']);
         $this->type = intval($pdo_statement['question_type']);
         $this->prompt = $pdo_statement['question'];
+        $this->options = explode("||", $pdo_statement['options']);
         $this->points = intval($pdo_statement['points']);
         $this->description = $pdo_statement['description'];
         $this->grader = $pdo_statement['grader'];
@@ -99,7 +101,7 @@ class Question {
         }
         try {
             $query = "UPDATE questions SET status=?, question_type=?" .
-                        "question=?, points=?, description=?, grader=?, section=?,
+                        "question=?, options=?, points=?, description=?, grader=?, section=?,
                         section=?, keywords=?, start_timestamp=?, end_timestamp=? " .
                         "WHERE id=?";
             $ps = $db->get()->prepare($query);
@@ -107,6 +109,7 @@ class Question {
                 $this->status,
                 $this->type,
                 $this->prompt,
+                implode("||", $this->options),
                 $this->points,
                 $this->description,
                 $this->grader,

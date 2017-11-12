@@ -1,0 +1,38 @@
+#questionform {
+    width: 600px;
+}
+
+#questionform pre {
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+#questionform h1 {
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+section#options {
+    padding-left: 50px;
+    margin-bottom: 20px;
+}
+
+#questionform input[type='text'] {
+    width: 300px;
+    margin-left: 5px;
+}
+
+#questionform input[type='submit'] {
+    position: static;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 150px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
