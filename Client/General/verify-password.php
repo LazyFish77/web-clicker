@@ -3,25 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="Takes user login info and returns homepage on successful login">
-        <meta name="keywords" content="verify login">
+        <meta name="keywords" content="webclicker homepage">
         <meta name="author" content="Tyler Fischer">
-        <title>Lab 5</title>
+        <title>Web Clicker</title>
     </head>
     <body>
-        <?php 
+        <?php
+            require_once("../../Server/constants.php"); // Must always import this before using the database API
+            require_once(SITE_ROOT . "/Server/database.php");
             $userName = $_POST["username"];
-            $passWord = $_POST["password"];
-            $accountType = $_POST["accounttype"];
-            $email = $userName."@uwosh.edu";
-            if(verifyUserBelongsToDatabase($userName, $passWord)) {
-                
-                if($accountType === "Student") {
+            $password = $_POST["password"];
+            $accountType = $_POST["accounttype"] === "Student" ? STUDENT : INSTRUCTOR;
+            $db = new Database();
+            $user = $db->get_user($userName);
+            $db->disconnect();
+            if ($user && $user->verify_password($password) && $user->type === $accountType) {
+                $user->log_in();
+                if($accountType === STUDENT) {
                     readfile('../Student/next-question.html');
                 } else {
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                echo"failed to log in";
+                echo"Login failed; your credentials were invalid.";
                 return;
             }
         ?>
@@ -39,10 +43,4 @@
             </div>
         </footer>
     </body>
-    <?php 
-        function verifyUserBelongsToDatabase($name, $password) {
-            //this code checks the db 
-            return true;
-        }
-    ?>
 </html>
