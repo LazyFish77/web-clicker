@@ -134,6 +134,7 @@ class Question {
     }
 
     public function delete($db=FALSE) {
+        // $db is a Database object (optional)
         // Deletes this question from the database
         $ret = FALSE;
         if (!$db) {
@@ -147,6 +148,50 @@ class Question {
             $ret = TRUE;
         } catch (PDOException $e) {
             print("An error occurred while attempting to delete a question.");
+        }
+        if (isset($disconnect_when_done)) {
+            $db->disconnect();
+        }
+        return $ret;
+    }
+
+    public function get_num_correct_answers($db=FALSE) {
+        // $db is a Database object (optional)
+        $ret = FALSE;
+        if (!$db) {
+            $disconnect_when_done = TRUE;
+            $db = new Database();
+        }
+        try {
+            $query = "SELECT COUNT(*) FROM answers WHERE questionid=? AND points_earned=?";
+            $ps = $db->get()->prepare($query);
+            $ps->execute([$this->id, $this->points]);
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+            $ret = intval($result['COUNT(*)']);
+        } catch (PDOException $e) {
+            print("An error occurred while attempting to read question answer data.");
+        }
+        if (isset($disconnect_when_done)) {
+            $db->disconnect();
+        }
+        return $ret;
+    }
+
+    public function get_average_score($db=FALSE) {
+        // $db is a Database object (optional)
+        $ret = FALSE;
+        if (!$db) {
+            $disconnect_when_done = TRUE;
+            $db = new Database();
+        }
+        try {
+            $query = "SELECT AVG('points_earned') FROM answers WHERE questionid=?";
+            $ps = $db->get()->prepare($query);
+            $ps->execute([$this->id]);
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+            $ret = intval($result["AVG('points_earned')"]);
+        } catch (PDOException $e) {
+            print("An error occurred while attempting to read question answer data.");
         }
         if (isset($disconnect_when_done)) {
             $db->disconnect();
