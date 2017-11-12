@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="Takes user login info and returns homepage on successful login">
-        <meta name="keywords" content="verify login">
+        <meta name="keywords" content="webclicker homepage">
         <meta name="author" content="Tyler Fischer">
-        <title>Lab 5</title>
+        <title>Web Clicker</title>
     </head>
     <body>
         <?php
