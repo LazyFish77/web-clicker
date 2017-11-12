@@ -189,7 +189,7 @@ class Question {
             $ps = $db->get()->prepare($query);
             $ps->execute([$this->id]);
             $result = $ps->fetch(PDO::FETCH_ASSOC);
-            $ret = intval($result["AVG('points_earned')"]);
+            $ret = floatval($result["AVG('points_earned')"]);
         } catch (PDOException $e) {
             print("An error occurred while attempting to read question answer data.");
         }
