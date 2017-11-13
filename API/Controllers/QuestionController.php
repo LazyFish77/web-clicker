@@ -1,28 +1,14 @@
 <?php
 require_once("../Shared/Models/Question.php");
-require_once("../Shared/Models/IDisposable.php");
-require_once("../API/Database/Database.php");
+require_once("BaseController.php");
 
 /**
  * Controller for handling operations which deal with questions
  */
-class QuestionController implements IDisposable{
+class QuestionController extends BaseController {
     
-    private $db = null;
-
-    /**
-     * Changed to use dependency injection... should probably define an IDatabase
-     * for this idea to become effective
-     */
     function __construct(Database $context) {
-        $this->db = $context;
-        $this->db->Connect();
-    }
-
-    public function Dispose() {
-        if($this->db !== null) {
-            $this->db->Disconnect();
-        }
+        parent::__construct($context);
     }
 
     /**
