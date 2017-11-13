@@ -19,7 +19,11 @@ try {
     $question->end_timestamp = date('Y-m-d H:i:s');;
 
     $controller = new QuestionController();
-    $controller->AddQuestion($question);
+    // $controller->AddQuestion($question);
+
+    $q = $controller->GetQuestion(2);
+    print_r($q);
+
 } catch(Exception $e) {
     echo $e->getMessage();
 }

@@ -44,6 +44,25 @@ class Database {
     }
 
     /**
+     * Selects a record from the database.... TODO: This is a very basic select statement
+     * it should be modified to handle more advanced SELECT cases
+     */
+    public function Select($what, $from, $where = null) {
+        try {
+            $query = "SELECT ".$what." FROM ".$from;
+            if($where !== null) {
+                $query .= " WHERE ".$where;
+            }
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // TODO: Actual error management
+            exit("Error: Exception with selecting records ".$e->getMessage());
+        }
+    }
+
+    /**
      * Takes an associate array and returns a comma seperated string of its keys
      */
     private function GetColumnNames($valueArray) {

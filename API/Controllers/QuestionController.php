@@ -15,5 +15,19 @@ class QuestionController {
 
         $context->Disconnect();
     }
+
+    public function GetQuestion($id) {
+        $context = new Database();
+        $context->Connect();
+
+        $results = $context->Select("*", "questions", "id = ".$id);
+        
+        $context->Disconnect();
+
+        $q = new Question();
+        $q->Deserialize($results[0]);
+        
+        return $q;
+    }
 }
 ?>
