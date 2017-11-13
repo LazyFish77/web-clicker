@@ -1,6 +1,8 @@
 <?php
     require_once("ISerializable.php");
-    class Question implements ISerializable{
+    require_once("IValidatable.php");
+
+    class Question implements ISerializable, IValidatable {
 
         public $id = null;
         public $status = null;
@@ -18,6 +20,9 @@
         function __construct() {
         }
 
+        /**
+         * Given an assoc array, populate this model's properties
+         */
         public function Deserialize($input) {
             if(isset($input['id'])) {
                 $this->id = $input['id'];
@@ -57,6 +62,10 @@
             }
         }
 
+        /**
+         * Serialize this Model into an array which our database context
+         * can use for updating the database entries.
+         */
         public function Serialize() {
             return array(
                 'id' => $this->id,
@@ -72,6 +81,17 @@
                 'start_timestamp' => $this->start_timestamp,
                 'end_timestamp' => $this->end_timestamp
             );
+        }
+
+        /**
+         * Logic for determining if this Question Model is in a 'valid' state
+         * TODO: Add actual validation.
+         */
+        public function IsValid(): bool {
+            if(!isset($this->question)) {
+                return false;
+            }
+            return true;
         }
     }
 ?>

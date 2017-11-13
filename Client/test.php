@@ -5,7 +5,7 @@ require_once("../Shared/Models/Question.php");
 try {
 
     $question = new Question();
-    $question->id = 2;
+    // $question->id = 2;
     $question->status = 0;
     $question->question_type = 0;
     $question->question = "My Question";
@@ -19,9 +19,9 @@ try {
     $question->end_timestamp = date('Y-m-d H:i:s');;
 
     $controller = new QuestionController();
-    // $controller->AddQuestion($question);
+    $result = $controller->AddQuestion($question);
 
-    $q = $controller->GetQuestion(2);
+    $q = $controller->GetQuestion($result->id);
     print_r($q);
 
 } catch(Exception $e) {
