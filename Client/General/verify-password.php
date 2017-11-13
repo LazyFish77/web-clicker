@@ -26,7 +26,7 @@
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                $_SESSION['errors'] = "Your username or password was incorrect.";
+                $_SESSION['errors'] = "Your username or password is incorrect.";
                 header("Location: ./login-page.php");
             }
         ?>
