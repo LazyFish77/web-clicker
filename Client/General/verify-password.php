@@ -25,7 +25,8 @@
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                echo"Login failed; your credentials were invalid.";
+                $_SESSION['errors'] = array("Your username or password was incorrect.");
+                header("Location:login-page.php");
                 return;
             }
         ?>
