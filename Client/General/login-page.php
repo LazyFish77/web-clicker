@@ -1,5 +1,5 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 
 <head>
@@ -30,15 +30,13 @@
             <input id="passwordinput" type="password" name="password" />
         </div>
         <input type="submit" name="Submit" />
-        <input type="reset"  value="Clear" />
-
-        <?php if (isset($_SESSION['errors'])) { ?>
-            <div class="form-errors">
-                <?php foreach($_SESSION['errors'] as $error) { 
-                    echo "<p>$error</p>";
-                } ?>
+        <input type="reset"  value="Clear" />        
+        <?php if (!empty($_SESSION['errors'])) { ?>
+            <div class="errors">
+                <?php echo $_SESSION['errors'];
+                      unset($_SESSION['errors']); ?>
             </div>
-        <?php } ?>
+        <?php } ?>        
     </form>
     <footer id="footer">
         <div>

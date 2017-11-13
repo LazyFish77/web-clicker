@@ -253,3 +253,12 @@ li {
     position: relative;
     top: 33px;
 }
+.errors {
+    color: red;
+    border: 2px red solid;
+    padding: 0px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
