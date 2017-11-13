@@ -16,7 +16,7 @@
                 <a href="../Instructor/create-question.html">Questions</a>
                 <a href="../Instructor/activate-question.html">Activiate question</a>
                 <a href="../Instructor/scores.php">Scores</a>
-                <a href="../General/login-page.html">Log out</a>
+                <a href="../General/login-page.php">Log out</a>
             </h1>    
         </div> 
         <div id="chartContainer"></div> 

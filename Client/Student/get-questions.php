@@ -14,7 +14,7 @@
                 <a href="../Student/next-question.html">Next question</a>
                 <a href="../Student/view-old-question.html">Review</a>
                 <a href="./reset-password.html">Reset password</a>
-                <a href="../General/login-page.html">Log out</a>
+                <a href="../General/login-page.php">Log out</a>
             </h1>    
         </div> 
         <?php 
