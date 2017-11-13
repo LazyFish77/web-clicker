@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 require_once("../API/Controllers/QuestionController.php");
+require_once("../API/Database/Database.php");
 require_once("../Shared/Models/Question.php");
 try {
 
@@ -15,14 +16,17 @@ try {
     $question->grader = "grader";
     $question->section = "1.1.1";
     $question->keywords = "Hello World";
-    $question->start_timestamp = date('Y-m-d H:i:s');;
-    $question->end_timestamp = date('Y-m-d H:i:s');;
+    $question->start_timestamp = date('Y-m-d H:i:s');
+    $question->end_timestamp = date('Y-m-d H:i:s');
 
-    $controller = new QuestionController();
+    $dbContext = new Database();
+    $controller = new QuestionController($dbContext);
+
     $result = $controller->AddQuestion($question);
 
     $q = $controller->GetQuestion($result->id);
     print_r($q);
+    $controller->Dispose();
 
 } catch(Exception $e) {
     echo $e->getMessage();

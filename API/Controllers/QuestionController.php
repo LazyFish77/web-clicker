@@ -1,18 +1,28 @@
 <?php
 require_once("../Shared/Models/Question.php");
+require_once("../Shared/Models/IDisposable.php");
 require_once("../API/Database/Database.php");
 
 /**
  * Controller for handling operations which deal with questions
  */
-class QuestionController {
+class QuestionController implements IDisposable{
     
+    private $db = null;
+
     /**
-     * NOTE: connecting and disconnecting on every controller call
-     * may be undesired. A different location for the Database object may
-     * need to be found.
+     * Changed to use dependency injection... should probably define an IDatabase
+     * for this idea to become effective
      */
-    function __construct() {
+    function __construct(Database $context) {
+        $this->db = $context;
+        $this->db->Connect();
+    }
+
+    public function Dispose() {
+        if($this->db !== null) {
+            $this->db->Disconnect();
+        }
     }
 
     /**
@@ -23,21 +33,14 @@ class QuestionController {
             // TODO: add actual code to handle invalid models
             return null;
         }
-        
-        $context = new Database();
-        $context->Connect();
 
         // Find the current highest ID number in use and add 1 to it
         // Naturally, assign it to the model
-        $highestId = $context->Select("MAX(id)", "questions");
-        $nextId = $highestId[0]['MAX(id)'] + 1;
-        
-        $question->id = $nextId;
+        $highestId = $this->db->Select("MAX(id)", "questions");
+        $question->id = $highestId[0]['MAX(id)'] + 1;
 
         // Do the actual insert
-        $context->Insert("questions", $question->Serialize());
-
-        $context->Disconnect();
+        $this->db->Insert("questions", $question->Serialize());
 
         // Return the model as it is reflected in our database
         // Note... we could also do another select, looking for the ID we just inserted
@@ -48,13 +51,9 @@ class QuestionController {
     /**
      * Returns a single question from the database, by its ID
      */
-    public function GetQuestion($id) {
-        $context = new Database();
-        $context->Connect();
+    public function GetQuestion($id): Question {
 
-        $results = $context->Select("*", "questions", "id = ".$id);
-        
-        $context->Disconnect();
+        $results = $this->db->Select("*", "questions", "id = ".$id);
 
         $q = new Question();
         $q->Deserialize($results[0]);
