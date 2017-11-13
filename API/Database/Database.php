@@ -66,21 +66,14 @@ class Database {
      * Takes an associate array and returns a comma seperated string of its keys
      */
     private function GetColumnNames($valueArray) {
-        $keys = array_keys($valueArray);
-        return implode(",", $keys);
+        return implode(",", array_keys($valueArray));
     }
 
     /**
-     * Is meant to return the correct # of ?....
-     * TODO: this function is crap. There surely is a better way of
-     * accomplishing this.
+     * Returns a string of comma seperated '?' for use in preparing SQL statements
      */
     private function GetColumnValues($valueArray) {
-        $values = array_values($valueArray);
-        foreach($values as $key => $value){
-            $values[$key] = "?";
-        }
-        return implode(",", $values);
+        return implode(",", array_pad(array(), count($valueArray), '?'));
     }
 }
 ?>
