@@ -10,7 +10,7 @@ class QuestionController extends BaseController {
     private $questionService = null;
 
     function __construct(Database $context) {
-        parent::__construct($context);
+        parent::__construct();
         $this->questionService = new QuestionService($context);
     }
 
@@ -84,6 +84,12 @@ class QuestionController extends BaseController {
         }
 
         return $payload;
+    }
+
+    public function Dispose() {
+        if($this->questionService !== null) {
+            $this->questionService->Dispose();
+        }
     }
 }
 ?>

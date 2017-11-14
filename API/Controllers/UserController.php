@@ -10,7 +10,7 @@ class UserController extends BaseController {
     private $userService = null;
 
     function __construct(IDatabase $context) {
-        parent::__construct($context);
+        parent::__construct();
         $this->userService = new UserService($context);
     }
 
@@ -58,6 +58,12 @@ class UserController extends BaseController {
             return $user;
         } else {
             return null;
+        }
+    }
+
+    public function Dispose() {
+        if($this->userService !== null) {
+            $this->userService->Dispose();
         }
     }
 

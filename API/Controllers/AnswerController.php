@@ -2,15 +2,16 @@
 require_once("../Shared/Models/Answer.php");
 require_once("BaseController.php");
 require_once("../API/Services/AnswerService.php");
+
 /**
- * Controller for handling operations which deal with questions
+ * Controller for making decisions about Answers
  */
 class AnswerController extends BaseController {
     
     private $answerService = null;
 
     function __construct(IDatabase $context) {
-        parent::__construct($context);
+        parent::__construct();
         $this->answerService = new AnswerService($context);
     }
 
@@ -32,6 +33,12 @@ class AnswerController extends BaseController {
         $a->Deserialize($result[0]);
 
         return $a;
+    }
+
+    public function Dispose() {
+        if($this->answerService !== null) {
+            $this->answerService->Dispose();
+        }
     }
 
 }

@@ -5,7 +5,7 @@ abstract class BaseService implements IDisposable {
     
     protected $db = null;
 
-    function __construct(Database $context) {
+    function __construct(IDatabase $context) {
         $this->db = $context;
         if(!$this->db->IsConnected()) {
             $this->db->Connect();
