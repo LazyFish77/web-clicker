@@ -33,6 +33,11 @@ try {
     print_r($q);
     echo "</pre>";
 
+    // $q2 = $questionCtrl->GetAllQuestions();
+    // echo "<pre>";
+    // print_r($q2);
+    // echo "</pre>";
+
     // Test adding and selecting an answer
     $answer = new Answer();
     $answer->student_id = "test";

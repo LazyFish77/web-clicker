@@ -1,13 +1,17 @@
 <?php
 require_once("../Shared/Models/Answer.php");
 require_once("BaseController.php");
+require_once("../API/Services/AnswerService.php");
 /**
  * Controller for handling operations which deal with questions
  */
 class AnswerController extends BaseController {
     
-    function __construct(Database $context) {
+    private $answerService = null;
+
+    function __construct(IDatabase $context) {
         parent::__construct($context);
+        $this->answerService = new AnswerService($context);
     }
 
     public function AddAnswer(Answer $model): Answer {
@@ -15,14 +19,14 @@ class AnswerController extends BaseController {
             return null;
         }
 
-        $this->db->Insert("answers", $model->Serialize());
+        $this->answerService->Insert($model);
 
         return $model;
     }
 
     public function GetAnswer($question_id, $student_id): Answer {
 
-        $result = $this->db->Select("*", "answers", "question_id = ".$question_id." AND student_id = '".$student_id."'");
+        $result = $this->answerService->Select($question_id, $student_id);
 
         $a = new Answer();
         $a->Deserialize($result[0]);

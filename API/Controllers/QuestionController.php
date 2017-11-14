@@ -1,14 +1,17 @@
 <?php
 require_once("../Shared/Models/Question.php");
 require_once("BaseController.php");
-
+require_once("../API/Services/QuestionService.php");
 /**
  * Controller for handling operations which deal with questions
  */
 class QuestionController extends BaseController {
     
+    private $questionService = null;
+
     function __construct(Database $context) {
         parent::__construct($context);
+        $this->questionService = new QuestionService($context);
     }
 
     /**
@@ -16,21 +19,13 @@ class QuestionController extends BaseController {
      */
     public function AddQuestion(Question $question): Question {
         if(!$question->IsValid()) {
-            // TODO: add actual code to handle invalid models
             return null;
         }
 
-        // Find the current highest ID number in use and add 1 to it
-        // Naturally, assign it to the model
-        $highestId = $this->db->Select("MAX(id)", "questions");
-        $question->id = $highestId[0]['MAX(id)'] + 1;
+        $question->id = $this->questionService->GetNextId();
 
-        // Do the actual insert
-        $this->db->Insert("questions", $question->Serialize());
+        $this->questionService->Insert($question);
 
-        // Return the model as it is reflected in our database
-        // Note... we could also do another select, looking for the ID we just inserted
-        // That would be better in my opinion, however, induces more work
         return $question;
     }
 
@@ -39,12 +34,26 @@ class QuestionController extends BaseController {
      */
     public function GetQuestion($id): Question {
 
-        $results = $this->db->Select("*", "questions", "id = ".$id);
+        $results = $this->questionService->Select($id);
 
         $q = new Question();
         $q->Deserialize($results[0]);
         
         return $q;
+    }
+
+    public function GetAllQuestions() {
+        $results = $this->questionService->SelectAll();
+
+        $payload = array();
+
+        foreach($results as $value) {
+            $q = new Question();
+            $q->Deserialize($value);
+            array_push($payload, $q);
+        }
+
+        return $payload;
     }
 }
 ?>
