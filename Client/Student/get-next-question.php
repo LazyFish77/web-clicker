@@ -17,15 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         <title>Get Question</title>
     </head>
     <body>
-        <div id="nav">
-            <h1 id="navheader">Web Clicker
-                <a href="../Student/next-question.html">Next question</a>
-                <a href="../Student/view-old-question.html">Review</a>
-                <a href="./reset-password.html">Reset password</a>
-                <a href="../General/login-page.html">Log out</a>
-            </h1>
-        </div>
         <?php
+            require_once("../General/student-nav.php");
             require_once("../../Server/constants.php");
             require_once(SITE_ROOT . "/Server/database.php");
             $db = new Database();
@@ -52,18 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                     <a id='returnlink' href='../Student/next-question.html'> click to return</a> </div>";
             }
         ?>
-        <footer id="footer">
-            <div>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img class="footerimage" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
-                </a>
-            </div>
-            <div>
-                <img class="footerimage" src="http://webdev.cs.uwosh.edu/WebCLICKER/public/images/html5_logo.png" alt="\'Valid\' HTML5">
-            </div>
-            <div>
-                <span id="footertext">2017 - Univ. of Tyler Fischer</span>
-            </div>
-        </footer>
+        <?php require_once('../General/footer.php')?>
     </body>
 </html>
