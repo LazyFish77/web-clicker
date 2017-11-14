@@ -19,7 +19,7 @@ class QuestionService extends BaseService {
             "status" => self::ACTIVE,
             "id" => $question->id
         );
-        return $this->db->ExecuteNonQuery($query) > 0;
+        return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
 
     public function Deactivate(Question $question) {
@@ -29,6 +29,14 @@ class QuestionService extends BaseService {
             "id" => $question->id
         );
         return $this->db->ExecuteNonQuery($query, $params) > 0;
+    }
+
+    public function SelectActiveQuestions() {
+        $query = "SELECT * FROM questions WHERE status = ?";
+        $params = array(
+            "status" => self::ACTIVE
+        );
+        return $this->db->ExecuteQuery($query, $params);
     }
 
     public function Insert(Question $question) {
@@ -43,7 +51,7 @@ class QuestionService extends BaseService {
         $params = array(
             "id" => $question->id
         );
-        return $this->db->ExecuteNonQuery($query) > 0;
+        return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
 
     // TODO: figure out which fields need to be updated

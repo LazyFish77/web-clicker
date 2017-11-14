@@ -42,11 +42,41 @@ class QuestionController extends BaseController {
         return $q;
     }
 
+    public function ActivateQuestion(Question $model) {
+        return $this->questionService->Activate($model);
+    }
+
+    public function DeactivateQuestion(Question $model) {
+        return $this->questionService->Deactivate($model);
+    }
+
+    public function GetActiveQuestions() {
+        $results = $this->questionService->SelectActiveQuestions();
+
+        $payload = array();
+        foreach($results as $value) {
+            $q = new Question();
+            $q->Deserialize($value);
+            array_push($payload, $q);
+        }
+
+        return $payload;
+    }
+
+    public function DeactivateAllQuestions() {
+        $active = $this->questionService->SelectActiveQuestions();
+
+        foreach($active as $value) {
+            $q = new Question();
+            $q->Deserialize($value);
+            $this->questionService->Deactivate($q);
+        }
+    }
+
     public function GetAllQuestions() {
         $results = $this->questionService->SelectAll();
 
         $payload = array();
-
         foreach($results as $value) {
             $q = new Question();
             $q->Deserialize($value);
