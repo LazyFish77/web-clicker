@@ -4,6 +4,7 @@
 
     class User implements ISerializable, IValidatable {
 
+        // constants for our password rules
         const PASS_MIN_LEN = 6;
 
         public $username = null;
@@ -17,6 +18,9 @@
         function __construct() {
         }
 
+        /**
+         * Takes an associate array from the database an populates the model's values
+         */
         public function Deserialize($input) {
             if (isset($input['username'])) {
                 $this->username = $input['username'];
@@ -41,6 +45,9 @@
             }
         }
 
+        /**
+         * Turns the model into an associative array for the database
+         */
         public function Serialize() {
             return array(
                 'username' => $this->username,

@@ -2,11 +2,13 @@
 require_once("../Shared/Models/Question.php");
 require_once("BaseController.php");
 require_once("../API/Services/QuestionService.php");
+
 /**
  * Controller for handling operations which deal with questions
  */
 class QuestionController extends BaseController {
     
+    // Questionr Service encapsulates the raw SQL statements we'll need to make
     private $questionService = null;
 
     function __construct(Database $context) {
@@ -15,9 +17,11 @@ class QuestionController extends BaseController {
     }
 
     /**
-     * Given a Question Model, inserts said model into our database
+     * Adds a new question to the database. Auto-finds the next available ID
+     * @param question An instance of a Question class
+     * @return Question object on success, null on failure
      */
-    public function AddQuestion(Question $question): Question {
+    public function AddQuestion(Question $question) {
         if(!$question->IsValid()) {
             return null;
         }
@@ -30,9 +34,11 @@ class QuestionController extends BaseController {
     }
 
     /**
-     * Returns a single question from the database, by its ID
+     * Fetches a single question from the database by it's ID
+     * @param id The Id number for the question being searched for
+     * @return Question object on success
      */
-    public function GetQuestion($id): Question {
+    public function GetQuestion($id) {
 
         $results = $this->questionService->Select($id);
 
@@ -42,14 +48,28 @@ class QuestionController extends BaseController {
         return $q;
     }
 
+    /**
+     * Sets a question into an activated state
+     * @param model An instance of a Question object
+     * @return int number of rows affected (should return 1 normally)
+     */
     public function ActivateQuestion(Question $model) {
         return $this->questionService->Activate($model);
     }
 
+    /**
+     * Sets a question into a deactivated state
+     * @param model An instance of a Question object
+     * @return int number of rows affected (should return 1 normally)
+     */
     public function DeactivateQuestion(Question $model) {
         return $this->questionService->Deactivate($model);
     }
 
+    /**
+     * Gets a list of all questions currently set to an active state in the database
+     * @return array of Question objects
+     */
     public function GetActiveQuestions() {
         $results = $this->questionService->SelectActiveQuestions();
 
@@ -63,6 +83,11 @@ class QuestionController extends BaseController {
         return $payload;
     }
 
+    /**
+     * Sets all activated questions into a deactivated state
+     * Note: This can probably be improved via a new/better SQL command in QuestionService
+     * @return void
+     */
     public function DeactivateAllQuestions() {
         $active = $this->questionService->SelectActiveQuestions();
 
@@ -73,6 +98,10 @@ class QuestionController extends BaseController {
         }
     }
 
+    /**
+     * Fetches all questions from the database
+     * @return array of Question objects
+     */
     public function GetAllQuestions() {
         $results = $this->questionService->SelectAll();
 
@@ -86,6 +115,10 @@ class QuestionController extends BaseController {
         return $payload;
     }
 
+    /**
+     * @Override
+     * Cleans up any resources used by this controller
+     */
     public function Dispose() {
         if($this->questionService !== null) {
             $this->questionService->Dispose();

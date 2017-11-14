@@ -12,6 +12,10 @@
         function __construct() {
         }
 
+        /**
+         * Takes a record fetched from the database and populates its values
+         * into the model
+         */
         public function Deserialize($input) {
             if(isset($input['question_id'])) {
                 $this->question_id = $input['question_id'];
@@ -27,6 +31,9 @@
             }
         }
 
+        /**
+         * Turns the model into an associative array to be sent to the database
+         */
         public function Serialize() {
             return array(
                 'question_id' => $this->question_id,
@@ -37,7 +44,6 @@
         }
 
         /**
-         * Logic for determining if this Question Model is in a 'valid' state
          * TODO: Add actual validation.
          */
         public function IsValid(): bool {

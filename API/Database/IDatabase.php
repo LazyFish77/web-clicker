@@ -1,7 +1,6 @@
 <?php
 
 interface IDatabase {
-    
     public function Connect();
     public function Disconnect();
     public function IsConnected();

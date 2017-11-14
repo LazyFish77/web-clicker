@@ -8,6 +8,7 @@ require_once("../API/Services/AnswerService.php");
  */
 class AnswerController extends BaseController {
     
+    // Answer Service encapsulates the raw SQL statements we'll need to make
     private $answerService = null;
 
     function __construct(IDatabase $context) {
@@ -15,7 +16,12 @@ class AnswerController extends BaseController {
         $this->answerService = new AnswerService($context);
     }
 
-    public function AddAnswer(Answer $model): Answer {
+    /**
+     * Adds an Answer to the database.
+     * @param model - An instance of the Answer class
+     * @return Answer object on success, null on failure
+     */
+    public function AddAnswer(Answer $model) {
         if(!$model->IsValid()) {
             return null;
         }
@@ -25,7 +31,13 @@ class AnswerController extends BaseController {
         return $model;
     }
 
-    public function GetAnswer($question_id, $student_id): Answer {
+    /**
+     * Gets a specific answer from the database via its primary keys of question_id & student_id
+     * @param question_id - the ID number of the question
+     * @param student_id - the username of the student
+     * @return Answer object on success
+     */
+    public function GetAnswer($question_id, $student_id) {
 
         $result = $this->answerService->Select($question_id, $student_id);
 
@@ -35,6 +47,10 @@ class AnswerController extends BaseController {
         return $a;
     }
 
+    /**
+     * @Override
+     * Cleans up any resources held onto by the controller
+     */
     public function Dispose() {
         if($this->answerService !== null) {
             $this->answerService->Dispose();

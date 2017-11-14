@@ -1,6 +1,9 @@
 <?php
 require_once("../Shared/Models/IDisposable.php");
 
+/**
+ * Base class for services. Currently contains the refrence to the database context
+ */
 abstract class BaseService implements IDisposable {
     
     protected $db = null;
