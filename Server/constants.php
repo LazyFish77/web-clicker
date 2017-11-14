@@ -1,6 +1,6 @@
 <?php
-define("SITE_ROOT", "/var/www/students/walbrc28/web-clicker"); // Change this depending on your host
-
+// define("SITE_ROOT", "/var/www/students/fischt77/web-clicker"); // Change this depending on your host
+define("SITE_ROOT", "/var/www/students/fischt77/web-clicker"); // Change this depending on your host
 // Database constants
 define("DB_DSN", "mysql:dbname=team2;host=localhost");
 define("DB_USER", "team2");
