@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<?php session_start(); ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -25,8 +26,8 @@
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                echo"Login failed; your credentials were invalid.";
-                return;
+                $_SESSION['errors'] = "Your username or password is incorrect.";
+                header("Location: ./login-page.php");
             }
             include_once('./footer.php')
         ?>
