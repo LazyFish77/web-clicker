@@ -4,7 +4,7 @@ define("SITE_ROOT", "/var/www/students/lewisc24/web-clicker"); // Change this de
 // Database constants
 define("DB_DSN", "mysql:dbname=team2;host=localhost");
 define("DB_USER", "team2");
-define("DB_PW", "watycoco");
+define("DB_PW", "teamB@d@$$");
 
 // Question constants
 define("ACTIVE", 1); // Arbitrary number chosen to indicate a question's status is active
