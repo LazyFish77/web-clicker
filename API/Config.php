@@ -1,6 +1,6 @@
 <?PHP
     define("DB_HOST", "localhost");
-    define("DB_NAME", "webdev");
-    define("DB_USER", "root");
-    define("DB_PASS", "watycoco");
+    define("DB_NAME", "team2");
+    define("DB_USER", "team2");
+    define("DB_PASS", "teamB@d@$$");
 ?>
