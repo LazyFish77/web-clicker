@@ -8,8 +8,9 @@ require_once("BaseController.php");
  */
 class QuestionController extends BaseController {
     
-    const TYPE_MULTI_CHOICE = 0; // Question type multiple choice
+    const TYPE_CHECKBOX = 0; // Question type multiple choice
     const TYPE_SHORT_ANSWER = 1; // Question type short answer
+    const TYPE_RADIO = 2;
 
     // Questionr Service encapsulates the raw SQL statements we'll need to make
     private $questionService = null;

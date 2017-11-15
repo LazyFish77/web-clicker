@@ -1,4 +1,6 @@
 <?PHP 
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,11 +33,11 @@
                     <label>Question type: </label>
                     <select required id="createselection1" name="questiontype">
                         <option disabled selected value> --- select an option --- </option>
-                        <option value="textbox">Text box</option>
-                        <option value="select">Select</option>
-                        <option value="tf">True or false</option>
-                        <option value="radiobuttons">Radio buttons</option>
-                        <option value="checkbox">Checkbox</option>
+                        <option value="<?PHP echo QuestionController::TYPE_SHORT_ANSWER; ?>">Text box</option>
+                        <!-- <option value="select">Select</option> -->
+                        <!-- <option value="tf">True or false</option> -->
+                        <option value="<?PHP echo QuestionController::TYPE_RADIO; ?>">Radio buttons</option>
+                        <option value="<?PHP echo QuestionController::TYPE_CHECKBOX; ?>">Checkbox</option>
                     </select>
                 </div>
                 <div>

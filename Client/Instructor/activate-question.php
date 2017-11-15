@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="author" content="Tyler Fischer">
         <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
         <script src="countdown.js"></script>
-        <title>get Question</title>
+        <title>Web Clicker</title>
     </head>
     <body>
         <?php require_once("../General/instructor-nav.php") ?>

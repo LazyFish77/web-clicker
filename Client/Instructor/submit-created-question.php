@@ -9,14 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $question = new Question();
     $question->status = QUESTION_INACTIVE;
-
-    $question->question_type = null;
-    if($_POST['questiontype'] === 'textbox') {
-        $question->question_type = QuestionController::TYPE_SHORT_ANSWER;
-    } else if ($_POST['questiontype'] === '') {
-        $question->question_type = QuestionController::TYPE_MULTI_CHOICE;
-    }
-
+    $question->question_type = $_POST['questiontype'];
     $question->question = $_POST['questionstatement'];
     $question->options = null;
     $question->points = $_POST['numberofpoints'];
@@ -44,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="keywords" content="post, questions">
         <meta name="author" content="Tyler Fischer">
         <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
-        <title>get Question</title>
+        <title>Web Clicker</title>
     </head>
     <body>
         <?php require_once("../General/instructor-nav.php") ?>

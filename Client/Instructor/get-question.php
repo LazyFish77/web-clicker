@@ -1,5 +1,5 @@
 <?PHP
-// ini_set('display_errors', 1);
+ini_set('display_errors', 1); // DEBUG
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
@@ -59,13 +59,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div>
                     <label>Question type: </label>
-                    <select required id='createselection1' name='questiontype' value='$questionType'>
-                        <option disabled selected value> --- select an option --- </option>
-                        <option value='textbox'>Text box</option>
-                        <option value='select'>Select</option>
-                        <option value='tf'>True or false</option>
-                        <option value='radiobuttons'>Radio buttons</option>
-                        <option value='checkbox'>Checkbox</option>
+                    <select required id='createselection1' name='questiontype' value="<?PHP echo $question->question_type; ?>">
+                        <option disabled value> --- select an option --- </option>
+                        <option <?PHP if($question->question_type == QuestionController::TYPE_SHORT_ANSWER) echo "selected"; ?> value='<?PHP echo QuestionController::TYPE_SHORT_ANSWER; ?>'>Text box</option>
+                        <!-- <option value='select'>Select</option> -->
+                        <!-- <option value='tf'>True or false</option> -->
+                        <option <?PHP if($question->question_type == QuestionController::TYPE_RADIO) echo "selected"; ?>  value='<?PHP echo QuestionController::TYPE_RADIO; ?>'>Radio buttons</option>
+                        <option <?PHP if($question->question_type == QuestionController::TYPE_CHECKBOX) echo "selected"; ?>  value='<?PHP echo QuestionController::TYPE_CHECKBOX; ?>'>Checkbox</option>
                     </select>
                 </div>
                 <div>
