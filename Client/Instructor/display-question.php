@@ -7,7 +7,7 @@
     <meta name="author" content="Tyler Fischer">
     <meta charset="UTF-8">
     <title>Web Clicker</title>
-    <link rel="stylesheet" href="../General/login-page.css">
+    <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <div id="flexbox">
         <div>
             <h1 class="loginheader">Activate Question</h1>
-            <form id="mediumform" class="container" action="../Instructor/activate-question.php" method="POST">
+            <form id="mediumform" class="container" action="activate-question.php" method="POST">
                 <div>
                     <label>Enter question id or question name to enable question</label>
                 </div>

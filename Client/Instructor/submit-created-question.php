@@ -1,5 +1,4 @@
 <?PHP
-ini_set('display_errors', 1);
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
@@ -29,9 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $question->end_timestamp = date('Y-m-d H:i:s');
 
     try {
-    $result = $questionCtrl->AddQuestion($question);
+        $result = $questionCtrl->AddQuestion($question);
     } catch (Exception $e) {
         echo $e->getMessage();
+    } finally {
+        $questionCtrl->Dispose();
     }
 }
 ?>
@@ -52,11 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // $randomNumber = rand(1,5000);
                 // print_r($_POST);                
                 echo "<h1 class='createquestionresponse'><span id='success'>Your question has been submitted! Question id is: $result->id</span></h1>";
-                echo "<a class='createquestionresponse' href='../instructor/create-question.html'>Click to return</a>";
+                echo "<a class='createquestionresponse' href='create-question.php'>Click to return</a>";
             } else {
                 // print_r($_POST);
                 echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to submit</span></h1>";
-                echo "<a class='createquestionresponse' href='../instructor/create-question.html'>Click to return</a>";
+                echo "<a class='createquestionresponse' href='create-question.php'>Click to return</a>";
             }
             // function addQuestionToDatabase(){
             //     return rand(0,1) === 1;

@@ -16,7 +16,7 @@ class QuestionService extends BaseService {
     public function Activate(Question $question) {
         $query = "UPDATE questions SET status = ? WHERE id = ?";
         $params = array(
-            "status" => self::ACTIVE,
+            "status" => QUESTION_ACTIVE,
             "id" => $question->id
         );
         return $this->db->ExecuteNonQuery($query, $params) > 0;
