@@ -1,5 +1,5 @@
 <?php
-require_once("../Shared/Models/IDisposable.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/IDisposable.php");
 
 /**
  * Base controller class for holding common properties/functions

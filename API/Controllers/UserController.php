@@ -1,7 +1,7 @@
 <?php
-require_once("../Shared/Models/Answer.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Answer.php");
 require_once("BaseController.php");
-require_once("../API/Services/UserService.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker//API/Services/UserService.php");
 
 /**
  * Controller for handling all operations pertaining to users

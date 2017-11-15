@@ -1,13 +1,16 @@
 <?php
-require_once("../Shared/Models/Question.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Services/QuestionService.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
 require_once("BaseController.php");
-require_once("../API/Services/QuestionService.php");
 
 /**
  * Controller for handling operations which deal with questions
  */
 class QuestionController extends BaseController {
     
+    const TYPE_MULTI_CHOICE = 0; // Question type multiple choice
+    const TYPE_SHORT_ANSWER = 1; // Question type short answer
+
     // Questionr Service encapsulates the raw SQL statements we'll need to make
     private $questionService = null;
 
@@ -22,12 +25,14 @@ class QuestionController extends BaseController {
      * @return Question object on success, null on failure
      */
     public function AddQuestion(Question $question) {
+        echo "HI!";
         if(!$question->IsValid()) {
+            echo "invalid model";
             return null;
         }
 
         $question->id = $this->questionService->GetNextId();
-
+        echo "ID: " . $question->id;
         $this->questionService->Insert($question);
 
         return $question;

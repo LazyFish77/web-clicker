@@ -6,12 +6,6 @@ require_once("BaseService.php");
  */
 class QuestionService extends BaseService {
 
-    const ACTIVE = 1;   // Question state active
-    const INACTIVE = 0; // Question state inactive
-
-    const TYPE_MULTI_CHOICE = 0; // Question type multiple choice
-    const TYPE_SHORT_ANSWER = 1; // Question type short answer
-
     function __construct(IDatabase $context) {
         parent::__construct($context);
     }
@@ -34,7 +28,7 @@ class QuestionService extends BaseService {
     public function Deactivate(Question $question) {
         $query = "UPDATE questions SET status = ? WHERE id = ?";
         $params = array(
-            "status" => self::INACTIVE,
+            "status" => QUESTION_INACTIVE,
             "id" => $question->id
         );
         return $this->db->ExecuteNonQuery($query, $params) > 0;
@@ -46,7 +40,7 @@ class QuestionService extends BaseService {
     public function SelectActiveQuestions() {
         $query = "SELECT * FROM questions WHERE status = ?";
         $params = array(
-            "status" => self::ACTIVE
+            "status" => QUESTION_ACTIVE
         );
         return $this->db->ExecuteQuery($query, $params);
     }

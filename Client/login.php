@@ -17,13 +17,12 @@
         $user = new User();
         $user->username = $_POST['username'];
         $user->password = $_POST['password'];
-        // $user->type = $_POST['accounttype'];
 
         $isValid = $userCtrl->ValidateUser($user);
 
         if($isValid !== null) {
             switch($isValid->type) {
-                case UserController::INSTRUCTOR: //instructor ??
+                case UserController::INSTRUCTOR:
                     header("Location: http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Instructor/scores.php");
                     die();
 
