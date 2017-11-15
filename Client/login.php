@@ -1,40 +1,11 @@
 <?php
-    session_start(); // TODO: Create session handler
+ini_set('display_errors', 1); // DEBUG
+require_once("../Client/General/Session.php");
+$session = new Session();
 
-    // clear out the 'flag' each turn around
-    if(isset($invalidLogin)) {
-        unset($invalidLogin);
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/UserController.php");
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/User.php");
-        // init resources
-        $dbContext = new Database();
-        $userCtrl = new UserController($dbContext);
-
-        $user = new User();
-        $user->username = $_POST['username'];
-        $user->password = $_POST['password'];
-
-        $isValid = $userCtrl->ValidateUser($user);
-
-        if($isValid !== null) {
-            switch($isValid->type) {
-                case UserController::INSTRUCTOR:
-                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Instructor/scores.php");
-                    die();
-
-                case UserController::STUDENT:
-                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Student/next-question.php");
-                    die();
-            }
-        }
-        else {
-            $invalidLogin = true;
-        }
-    }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $session->LogIn($_POST['username'], $_POST['password']);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,9 +21,9 @@
 
 <body>
     <?php
-        if(isset($invalidLogin)) {
+        if(isset($_SESSION['message'])) {
             // TODO: make this pretty
-            echo "Invalid login attempt";
+            echo $_SESSION['message'];
         }
     ?>
     <h1 class="loginheader">Login</h1>
@@ -75,7 +46,7 @@
         <?php } ?>        
     </form>
     <?php 
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/General/footer.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Client/General/footer.php");
      ?>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?PHP
+// ini_set('display_errors', 1); // DEBUG
+require_once("../../Client/General/Session.php");
+$session = new Session();
+
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
