@@ -1,5 +1,5 @@
 <?PHP
-ini_set('display_errors', 1);
+// ini_set('display_errors', 1);
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
