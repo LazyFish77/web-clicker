@@ -1,14 +1,18 @@
+<?PHP 
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
+
+?>
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta name="description" content="Allows Instructor to create/modify/delete questions">
-    <meta name="keywords" content="Create, modify, delete, questions">
-    <meta name="author" content="Tyler Fischer">
-    <meta charset="UTF-8">
-    <title>Web Clicker</title>
-    <link rel="stylesheet" href="../General/login-page.css">
-</head>
+    <head>
+        <meta name="description" content="Allows Instructor to create/modify/delete questions">
+        <meta name="keywords" content="Create, modify, delete, questions">
+        <meta name="author" content="Tyler Fischer">
+        <meta charset="UTF-8">
+        <title>Web Clicker</title>
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
+    </head>
 
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
@@ -29,11 +33,11 @@
                     <label>Question type: </label>
                     <select required id="createselection1" name="questiontype">
                         <option disabled selected value> --- select an option --- </option>
-                        <option value="textbox">Text box</option>
-                        <option value="select">Select</option>
-                        <option value="tf">True or false</option>
-                        <option value="radiobuttons">Radio buttons</option>
-                        <option value="checkbox">Checkbox</option>
+                        <option value="<?PHP echo QuestionController::TYPE_SHORT_ANSWER; ?>">Text box</option>
+                        <!-- <option value="select">Select</option> -->
+                        <!-- <option value="tf">True or false</option> -->
+                        <option value="<?PHP echo QuestionController::TYPE_RADIO; ?>">Radio buttons</option>
+                        <option value="<?PHP echo QuestionController::TYPE_CHECKBOX; ?>">Checkbox</option>
                     </select>
                 </div>
                 <div>
