@@ -9,15 +9,7 @@
         <title>get Question</title>
     </head>
     <body>
-        <div id="nav">
-            <h1 id="navheader">
-                <label>Web Clicker</label>
-                <a href="../Instructor/create-question.html">Questions</a>
-                <a href="../Instructor/activate-question.html">Activiate question</a>
-                <a href="../Instructor/scores.php">Scores</a>
-                <a href="../General/login-page.html">Log out</a>
-            </h1>
-        </div>
+        <?php require_once("../General/instructor-nav.php") ?>
         <?php 
             $random = rand(1,500);
             function deleteQuestionFromDatabase() {
@@ -34,18 +26,6 @@
                 echo "<a class='createquestionresponse' href='../instructor/create-question.html'>Click to return</a>";
             }
         ?>
-        <footer id="footer">
-            <div>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img class="footerimage" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
-                </a>
-            </div>
-            <div>
-                <img class="footerimage" src="http://webdev.cs.uwosh.edu/WebCLICKER/public/images/html5_logo.png" alt="\'Valid\' HTML5">
-            </div>
-            <div>
-                <span id="footertext">2017 - Univ. of Tyler Fischer</span>
-            </div>
-        </footer>
+        <?php require_once('../General/footer.php')?>
     </body>
 </html>

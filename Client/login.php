@@ -1,4 +1,6 @@
 <?php
+    session_start(); // TODO: Create session handler
+
     // clear out the 'flag' each turn around
     if(isset($invalidLogin)) {
         unset($invalidLogin);
@@ -52,9 +54,9 @@
 </head>
 
 <body>
-    <?php 
-        // TODO: spiffy this part up
+    <?php
         if(isset($invalidLogin)) {
+            // TODO: make this pretty
             echo "Invalid login attempt";
         }
     ?>
@@ -62,10 +64,10 @@
     <form class="container" action="./login.php" method="post">
         <div>
             <label id="instructorlabel"> Instructor</label>
-            <input type="radio" name="accounttype" value="0" required/>
+            <input type="radio" name="accounttype" value="Instructor" required/>
 
             <label>Student</label>
-            <input type="radio" name="accounttype" value="1" required/>
+            <input type="radio" name="accounttype" value="Student" required/>
         </div>
         <div>
             <label class="inputkey">User Name:</label>
@@ -76,20 +78,18 @@
             <input id="passwordinput" type="password" name="password" />
         </div>
         <input type="submit" name="Submit" />
-        <input type="reset"  value="Clear" />
+        <input type="reset"  value="Clear" />        
+        <?php if (!empty($_SESSION['errors'])) { ?>
+            <div class="errors">
+                <?php echo $_SESSION['errors'];
+                      unset($_SESSION['errors']); ?>
+            </div>
+        <?php } ?>        
     </form>
-    <footer id="footer">
-        <div>
-            <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                <img class="footerimage" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
-            </a>
-        </div>
-        <div>
-            <img class="footerimage" src="http://webdev.cs.uwosh.edu/WebCLICKER/public/images/html5_logo.png" alt="\'Valid\' HTML5">
-        </div>
-        <div>
-            <span id="footertext">2017 - Univ. of Tyler Fischer</span>
-        </div>
-    </footer>
+    <?php 
+        // require_once("../../Server/constants.php");
+        //using the constant was giving me 404 errors, not sure why.
+        require_once("../General/footer.php");
+     ?>
 </body>
 </html>

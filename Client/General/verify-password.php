@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<?php session_start(); ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -25,22 +26,10 @@
                     readfile('../Instructor/create-question.html');
                 }
             } else {
-                echo"Login failed; your credentials were invalid.";
-                return;
+                $_SESSION['errors'] = "Your username or password is incorrect.";
+                header("Location: ./login-page.php");
             }
+            include_once('./footer.php')
         ?>
-        <footer id="footer">
-            <div>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img class="footerimage" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
-                </a>
-            </div>
-            <div>
-                <img class="footerimage" src="http://webdev.cs.uwosh.edu/WebCLICKER/public/images/html5_logo.png" alt="\'Valid\' HTML5">
-            </div>
-            <div>
-                <span id="footertext">2017 - Univ. of Tyler Fischer</span>
-            </div>
-        </footer>
     </body>
 </html>

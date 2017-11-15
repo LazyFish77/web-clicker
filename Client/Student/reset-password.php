@@ -11,15 +11,7 @@
 </head>
 
 <body>
-    <div id="nav">
-        <h1 id="navheader">
-            <label>Web Clicker</label>
-            <a href="./next-question.html">Next question</a>
-            <a href="./view-old-question.html">Review</a>
-            <a href="../Student/reset-password.html">Reset password</a>
-            <a href="../General/login-page.html">Log out</a>
-        </h1>
-    </div>
+    <?php require_once("../General/student-nav.php");?>
     <h1 class="loginheader">Password reset</h1>
     <form class="container">
         <div>
@@ -38,19 +30,7 @@
         <input id="newpasswordsubmit" type="button" value="submit button" />
         <input id="newpasswordclear" type="reset" value="reset" />
     </form>
-    <footer id="footer">
-        <div>
-            <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                <img class="footerimage" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="Valid CSS!">
-            </a>
-        </div>
-        <div>
-            <img class="footerimage" src="http://webdev.cs.uwosh.edu/WebCLICKER/public/images/html5_logo.png" alt="\'Valid\' HTML5">
-        </div>
-        <div>
-            <span id="footertext">2017 - Univ. of Tyler Fischer</span>
-        </div>
-    </footer>
+    <?php require_once('../General/footer.php')?>
 </body>
 
 </html>
