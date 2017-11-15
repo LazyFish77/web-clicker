@@ -7,9 +7,9 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        require_once("../API/Database/Database.php");
-        require_once("../API/Controllers/UserController.php");
-        require_once("../Shared/Models/User.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/UserController.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/User.php");
         // init resources
         $dbContext = new Database();
         $userCtrl = new UserController($dbContext);
@@ -22,17 +22,13 @@
         $isValid = $userCtrl->ValidateUser($user);
 
         if($isValid !== null) {
-            // echo $_SERVER['SERVER_NAME'] . "  " . $_SERVER['REQUEST_URI'];
-            // WARNING!!! This is a quick-and-dirty HTML redirect.
-            // We either need to come up with a better way of passing in the absolute URL
-            // Or we need to come up with a different solution all together
             switch($isValid->type) {
-                case 0: //instructor ??
-                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/webclicker/web-clicker/Client/Instructor/scores.php");
+                case UserController::INSTRUCTOR: //instructor ??
+                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Instructor/scores.php");
                     die();
 
-                case 1: // student ??
-                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/webclicker/web-clicker/Client/Student/next-question.php");
+                case UserController::STUDENT:
+                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Student/next-question.php");
                     die();
             }
         }
@@ -50,7 +46,7 @@
     <meta name="author" content="Tyler Fischer">
     <meta charset="UTF-8">
     <title>Web Clicker</title>
-    <link rel="stylesheet" href="./login-page.css">
+    <link rel="stylesheet" href="login-page.css">
 </head>
 
 <body>
@@ -61,14 +57,7 @@
         }
     ?>
     <h1 class="loginheader">Login</h1>
-    <form class="container" action="./login.php" method="post">
-        <div>
-            <label id="instructorlabel"> Instructor</label>
-            <input type="radio" name="accounttype" value="Instructor" required/>
-
-            <label>Student</label>
-            <input type="radio" name="accounttype" value="Student" required/>
-        </div>
+    <form class="container" action="login.php" method="post">
         <div>
             <label class="inputkey">User Name:</label>
             <input type="text" name="username" required />
@@ -87,9 +76,7 @@
         <?php } ?>        
     </form>
     <?php 
-        // require_once("../../Server/constants.php");
-        //using the constant was giving me 404 errors, not sure why.
-        require_once("../General/footer.php");
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/General/footer.php");
      ?>
 </body>
 </html>

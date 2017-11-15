@@ -8,6 +8,9 @@ require_once("../API/Services/UserService.php");
  */
 class UserController extends BaseController {
     
+    const INSTRUCTOR = 1;
+    const STUDENT = 0;
+
     const HASH_ALGORITHM = "sha256"; // Note, so far this constant is only used in the scope of this controller
 
     // UserService contains all the SQL command's we need to use
@@ -24,6 +27,7 @@ class UserController extends BaseController {
      * @return User object on success, null on failure
      */
     public function Register(User $model) {
+        
         // First we verify that the model is in a valid state
         if(!$model->IsValid()) {
             return null;
@@ -44,7 +48,7 @@ class UserController extends BaseController {
         // Hash the user's cleartext password and insert into the DB
         $model->password = hash(self::HASH_ALGORITHM, $model->password);
 
-        $this->userService->Insert($model);
+        echo $this->userService->Insert($model);
 
         return $model;
     }
