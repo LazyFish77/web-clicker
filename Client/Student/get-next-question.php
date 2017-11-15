@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // Redirect to next-question.html (user tried to navigate to this page directly)
-    header('Location: next-question.html');
+    header('Location: next-question.php');
 }
 ?>
 <!DOCTYPE HTML>

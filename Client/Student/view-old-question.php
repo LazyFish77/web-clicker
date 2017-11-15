@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+  
 <head>
     <meta name="description" content="Allows students to reset their passwords">
     <meta name="keywords" content="Password reset">
