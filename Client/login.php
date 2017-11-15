@@ -28,11 +28,11 @@
             // Or we need to come up with a different solution all together
             switch($isValid->type) {
                 case 0: //instructor ??
-                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/webclicker/web-clicker/Client/Instructor/scores.html");
+                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/webclicker/web-clicker/Client/Instructor/scores.php");
                     die();
 
                 case 1: // student ??
-                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/webclicker/web-clicker/Client/Student/next-question.html");
+                    header("Location: http://" . $_SERVER['SERVER_NAME'] . "/webclicker/web-clicker/Client/Student/next-question.php");
                     die();
             }
         }

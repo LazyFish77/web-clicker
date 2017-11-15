@@ -42,7 +42,7 @@ class Database implements IDatabase {
      * If a transaction is in progress... it will attempt to commit it before closing
      */
     public function Disconnect() {
-        if(isset($this->dbh) && this->dbh !== null) {
+        if(isset($this->dbh) && $this->dbh !== null) {
             if($this->dbh->inTransaction()) {
                 $this->dbh->commit();
             }
