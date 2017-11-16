@@ -54,6 +54,11 @@ class Session implements IDisposable {
         }
     }
 
+    public function LogOut() {
+        session_destroy();
+        $this->Redirect("http://".$_SERVER['SERVER_NAME'] . "/web-clicker/Client/login.php");
+    }
+
     /**
      * @Override
      */

@@ -1,6 +1,6 @@
 <?PHP
 // ini_set('display_errors', 1); // DEBUG
-require_once("../../Client/General/Session.php");
+require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
 $session = new Session();
 
 ?>
@@ -17,7 +17,7 @@ $session = new Session();
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>
     <body>        
-        <?php require_once("../General/instructor-nav.php") ?>
+        <?php require_once(realpath(dirname(__FILE__)) . "/../General/instructor-nav.php") ?>
         <div id="chartContainer"></div> 
-        <?php require_once('../General/footer.php')?>
+        <?php require_once(realpath(dirname(__FILE__)) . '/../General/footer.php')?>
 </html>

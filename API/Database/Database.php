@@ -1,6 +1,6 @@
 <?PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Config.php");
+require_once(realpath(dirname(__FILE__)) . "/IDatabase.php");
+require_once(realpath(dirname(__FILE__)) . "/../Config.php");
 
 /**
  * This class contains all the functionality required for communication between

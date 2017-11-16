@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1); // DEBUG
-require_once("../Client/General/Session.php");
+require_once(realpath(dirname(__FILE__)). "/General/Session.php");
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,7 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+
     <?php
+        //echo "<pre>";
+        //echo realpath( dirname( __FILE__ ));
+        //print_r($_SERVER);
+        //echo "</pre>";
         if(isset($_SESSION['message'])) {
             // TODO: make this pretty
             echo $_SESSION['message'];
@@ -46,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php } ?>        
     </form>
     <?php 
-        require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Client/General/footer.php");
+        require_once(realpath(dirname(__FILE__)) . "/General/footer.php");
      ?>
 </body>
 </html>
