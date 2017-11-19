@@ -40,6 +40,15 @@ class UserService extends BaseService {
         );
         return $this->db->ExecuteQuery($query, $params);
     }
+
+    public function UpdatePassword(User $user) {
+        $query = "UPDATE users SET password = ? WHERE username = ?";
+        $params = array(
+            "password" => $user->password,
+            "username" => $user->username
+        );
+        return $this->db->ExecuteNonQuery($query, $params);
+    }
 }
 
 ?>

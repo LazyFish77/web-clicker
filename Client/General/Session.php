@@ -15,8 +15,8 @@ class Session implements IDisposable {
             session_start();
         }
 
-        if(!isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] != "/web-clicker/Client/login.php") {
-            $this->Redirect("http://".$_SERVER['SERVER_NAME'] . "/web-clicker/Client/login.php");
+        if(!isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] != WEB_ROOT . "/Client/login.php") {
+            $this->Redirect("http://".$_SERVER['SERVER_NAME'] . WEB_ROOT . "/Client/login.php");
         }
 
         $this->dbContext = new Database();
@@ -44,19 +44,40 @@ class Session implements IDisposable {
             $_SESSION['user'] = $validUser;
             switch($validUser->type) {
                 case UserController::INSTRUCTOR:
-                    $this->Redirect("http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Instructor/scores.php");
+                    $this->Redirect("http://" . $_SERVER['SERVER_NAME'] . WEB_ROOT. "/Client/Instructor/scores.php");
 
                 case UserController::STUDENT:
-                    $this->Redirect("http://" . $_SERVER['SERVER_NAME'] . "/web-clicker/Client/Student/next-question.php");
+                    $this->Redirect("http://" . $_SERVER['SERVER_NAME'] . WEB_ROOT . "/Client/Student/next-question.php");
             }
         } else {
-            $this->Redirect("http://".$_SERVER['SERVER_NAME'] . "/web-clicker/Client/login.php", "Invalid username or password");
+            $this->Redirect("http://".$_SERVER['SERVER_NAME'] . WEB_ROOT . "/Client/login.php", "Invalid username or password");
         }
     }
 
     public function LogOut() {
         session_destroy();
-        $this->Redirect("http://".$_SERVER['SERVER_NAME'] . "/web-clicker/Client/login.php");
+        $this->Redirect("http://".$_SERVER['SERVER_NAME'] . WEB_ROOT . "/Client/login.php");
+    }
+
+    public function SetMessage($msg) {
+        $_SESSION["message"] = $msg;
+    }
+
+    public function ClearMessage() {
+        if(isset($_SESSION["message"])) {
+            unset($_SESSION["message"]);
+        }
+    }
+
+    public function GetMessage() {
+        if(isset($_SESSION["message"])) {
+            return $_SESSION["message"];
+        }
+        return null;
+    }
+
+    public function GetUser() {
+        return $_SESSION['user'];
     }
 
     /**

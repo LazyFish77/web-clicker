@@ -84,6 +84,21 @@ class UserController extends BaseController {
         }
     }
 
+    public function ChangePassword(User $model, $oldPassword, $newPassword) {
+        $model->password = $oldPassword;
+
+        $isValid = $this->ValidateUser($model);
+
+        if($isValid !== null) {
+            $hash = hash(self::HASH_ALGORITHM, $newPassword);
+            $model->password = $hash;
+            $this->userService->UpdatePassword($model);
+            return $model;
+        }
+
+        return null;
+    }
+
     /**
      * @Override
      * Cleans up any resources used by this Controller

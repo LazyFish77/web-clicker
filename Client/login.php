@@ -22,13 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <?php
-        //echo "<pre>";
-        //echo realpath( dirname( __FILE__ ));
-        //print_r($_SERVER);
-        //echo "</pre>";
         if(isset($_SESSION['message'])) {
-            // TODO: make this pretty
+    ?>
+        <div class="errors">
+    <?PHP
             echo $_SESSION['message'];
+    ?>
+        </div>
+    <?PHP
         }
     ?>
     <h1 class="loginheader">Login</h1>
