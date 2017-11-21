@@ -1,6 +1,7 @@
 <?PHP 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
-
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+    $session = new Session();
 ?>
 <!DOCTYPE html>
 <html>

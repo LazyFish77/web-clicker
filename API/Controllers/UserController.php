@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Answer.php");
-require_once("BaseController.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker//API/Services/UserService.php");
+require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Answer.php");
+require_once(realpath(dirname(__FILE__)) . "/BaseController.php");
+require_once(realpath(dirname(__FILE__)) . "/../Services/UserService.php");
 
 /**
  * Controller for handling all operations pertaining to users
@@ -82,6 +82,21 @@ class UserController extends BaseController {
         } else {
             return null;
         }
+    }
+
+    public function ChangePassword(User $model, $oldPassword, $newPassword) {
+        $model->password = $oldPassword;
+
+        $isValid = $this->ValidateUser($model);
+
+        if($isValid !== null) {
+            $hash = hash(self::HASH_ALGORITHM, $newPassword);
+            $model->password = $hash;
+            $this->userService->UpdatePassword($model);
+            return $model;
+        }
+
+        return null;
     }
 
     /**

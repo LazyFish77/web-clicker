@@ -1,7 +1,7 @@
 <?php
 
 interface IValidatable {
-    public function IsValid(): bool;
+    public function IsValid();
 }
 
 ?>
