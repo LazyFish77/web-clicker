@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Services/QuestionService.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
-require_once("BaseController.php");
+require_once(realpath(dirname(__FILE__)) . "/../Services/QuestionService.php");
+require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Question.php");
+require_once(realpath(dirname(__FILE__)) . "/BaseController.php");
 
 /**
  * Controller for handling operations which deal with questions

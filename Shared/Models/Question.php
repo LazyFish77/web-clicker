@@ -87,7 +87,7 @@
          * Logic for determining if this Question Model is in a 'valid' state
          * TODO: Add actual validation.
          */
-        public function IsValid(): bool {
+        public function IsValid() {
             if(!isset($this->question)) {
                 return false;
             }

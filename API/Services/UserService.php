@@ -1,5 +1,5 @@
 <?php
-require_once("BaseService.php");
+require_once(realpath(dirname(__FILE__)) . "/BaseService.php");
 
 /**
  * Service for dealing with the User table
@@ -39,6 +39,15 @@ class UserService extends BaseService {
             "email" => $email
         );
         return $this->db->ExecuteQuery($query, $params);
+    }
+
+    public function UpdatePassword(User $user) {
+        $query = "UPDATE users SET password = ? WHERE username = ?";
+        $params = array(
+            "password" => $user->password,
+            "username" => $user->username
+        );
+        return $this->db->ExecuteNonQuery($query, $params);
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-require_once("BaseService.php");
+require_once(realpath(dirname(__FILE__)) . "/BaseService.php");
 
 /**
  * Service for dealing with the Questions table

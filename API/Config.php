@@ -6,4 +6,6 @@
 
     define("QUESTION_ACTIVE", 1);
     define("QUESTION_INACTIVE", 0);
+
+    define("WEB_ROOT", "/web-clicker");
 ?>
