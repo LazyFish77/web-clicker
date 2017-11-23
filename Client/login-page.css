@@ -211,7 +211,7 @@ li {
 }
 #flexbox{
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
     justify-content: space-around;
 }
 .deleteinput{
@@ -220,9 +220,9 @@ li {
 #activateinput1{
     margin-left:28px;
 }
-#chartContainer{
-    height: 500px;
-    width: 1200px;
+.chart {
+    height: 300px;
+    width: 600px;
     margin: auto;
     margin-top: 50px;
 }
@@ -261,3 +261,30 @@ li {
     font-size: 18px;
     font-weight: bold;
 }
+.scorebutton {
+    width: 180px;
+    height: 45px;
+    background-color: lightseagreen;
+    color: white;
+    border: 0px;
+}
+#scorebody {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+#student {
+    width: 50px;
+    position: relative;
+    top: 20%;
+}
+#studentcontainer {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+#chartbox {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
