@@ -25,6 +25,7 @@ require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
         </div>
             <button class="scorebutton" onclick="showAllStudents()">show all student scores</button>
         </div>
+
         <div id="chartbox">
         </div>
         <?php require_once(realpath(dirname(__FILE__)) . '/../General/footer.php')?>
