@@ -211,7 +211,7 @@ li {
 }
 #flexbox{
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
     justify-content: space-around;
 }
 .deleteinput{
@@ -220,7 +220,7 @@ li {
 #activateinput1{
     margin-left:28px;
 }
-#chartContainer{
+.chart {
     height: 500px;
     width: 1200px;
     margin: auto;
