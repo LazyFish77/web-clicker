@@ -43,6 +43,14 @@ class AnswerController extends BaseController {
         $a->Deserialize($result[0]);
         return $a;
     }
+    public function GetAllAnswers() {
+        $result = $this->answerService->SelectAll();
+        return $result;
+    }
+    public function GetAllAnswersFromStudent($studentId){
+        $result = $this->answerService->GetAllAnswersFromStudent($studentId);
+        return $result;
+    }
 
     public function GetAllAnswers() {
         $result = $this->answerService->SelectAll();
