@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             otherwise returns message saying could not get question">
         <meta name="keywords" content="show question">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="../General/login-page.css">
+        <link rel="stylesheet" href="../login-page.css">
         <link rel="stylesheet" href="question.css">
         <title>Get Question</title>
     </head>

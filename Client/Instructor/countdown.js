@@ -1,6 +1,6 @@
 function startTimer() {
     var counter = document.getElementById("countdown");
-    var time = 10
+    var time = 120
     counter.innerHTML = time;
     setInterval(function () {
         time--;

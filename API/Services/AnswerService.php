@@ -30,6 +30,23 @@ class AnswerService extends BaseService {
         );
         return $this->db->ExecuteQuery($query, $params);
     }
+
+    public function SelectAll() {
+        $query = "SELECT * FROM answers";
+        return $this->db->ExecuteQuery($query);
+    }
+
+    public function GetAllAnswersFromStudent($studentId) {
+        $query ="SELECT * FROM answers WHERE student_id = ?";
+        $params = array("student_id" => $studentId);
+        return $this->db->ExecuteQuery($query, $params);
+    }
+
+    public function GetAllAnswersFromQuestion($questionId) {
+        $query ="SELECT * FROM answers WHERE question_id = ?";
+        $params = array("question_id" => $questionId);
+        return $this->db->ExecuteQuery($query, $params);
+    }
 }
 
 ?>

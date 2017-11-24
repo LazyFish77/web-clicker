@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
         <div class="errors">
     <?PHP
+            echo"howdy";
             echo $_SESSION['message'];
     ?>
         </div>

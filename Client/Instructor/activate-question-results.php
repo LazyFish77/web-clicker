@@ -7,12 +7,35 @@
         <meta name="author" content="Tyler Fischer">
         <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
         <title>Web Clicker</title>
-        <script src="./chart.js"></script>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>
     <body>        
         <?php require_once("../General/instructor-nav.php") ?>
-        <div id="chartContainer"></div>
+        <!-- <div id="chartContainer"></div> -->
+        
+<?php 
+    require_once("../../API/Controllers/QuestionController.php");
+    require_once("../../API/Controllers/AnswerController.php");
+    require_once("../../API/Database/Database.php");
+    $db = new Database();
+    $questionController = new QuestionController($db);
+    $answerController = new AnswerController($db);
+    $question = $questionController->GetActiveQuestions()[0];
+    $getStudentResponses = $answerController->GetAllAnswersFromQuestion($question->id);
+    $getStudentResponses = json_encode($getStudentResponses);
+    $question = json_encode($question);
+    $questionController->DeactivateAllQuestions();
+?>
+    <div id="studentstats">
+        <div>
+            <?php echo"$getStudentResponses"?>
+        </div>
+        <div>
+            <?php echo"$question"?>            
+        </div>
+    </div>
+    <div id="studentresponsechart"></div>
         <?php require_once('../General/footer.php')?>
     </body>
+    <script src="./chart.js"></script>
 </html>

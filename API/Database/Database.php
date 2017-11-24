@@ -30,6 +30,7 @@ class Database implements IDatabase {
                             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); 
         } catch (PDOException $e) {
             // TODO: Actual error management
+            echo "$e";
             echo "This application exited with failure<br />" .
                     "because there was an error when trying to<br />" .
                     "connect to its database.<br />";

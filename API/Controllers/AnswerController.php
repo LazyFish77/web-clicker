@@ -38,13 +38,25 @@ class AnswerController extends BaseController {
      * @return Answer object on success
      */
     public function GetAnswer($question_id, $student_id) {
-
         $result = $this->answerService->Select($question_id, $student_id);
-
         $a = new Answer();
         $a->Deserialize($result[0]);
-
         return $a;
+    }
+
+    public function GetAllAnswers() {
+        $result = $this->answerService->SelectAll();
+        return $result;
+    }
+
+    public function GetAllAnswersFromStudent($studentId){
+        $result = $this->answerService->GetAllAnswersFromStudent($studentId);
+        return $result;
+    }
+
+    public function GetAllAnswersFromQuestion($questionId) {
+        $result = $this->answerService->GetAllAnswersFromQuestion($questionId);
+        return $result;
     }
 
     /**

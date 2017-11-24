@@ -46,7 +46,7 @@
         /**
          * TODO: Add actual validation.
          */
-        public function IsValid(): bool {
+        public function IsValid() {
             if(isset($this->question_id) &&
                isset($this->student_id) &&
                isset($this->answer) &&

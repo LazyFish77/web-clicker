@@ -16,6 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
             $result = $questionCtrl->ActivateQuestion($question);
+            // $result = $questionCtrl->DeactivateQuestion($question);
         } catch (Exception $e) {
             // TODO, remove before production
             echo $e->getMessage();
@@ -39,22 +40,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <body>
         <?php require_once("../General/instructor-nav.php") ?>
     <?php 
-    // $questionId = $_POST['questionid'];
-    // $questionName = $_POST['questionname'];
-    // if (!$questionId) {
-    //     $questionId = "not set";
-    // }
-    // if(!$questionName){
-    //     $questionName = "not set";
-    // }
-
         if(isset($result) && $result > 0) {
              echo "<h1 class='createquestionresponse'><span id='success'>Your question has been activated! Question id is: $question->id </span></h1>";
              echo "<a class='createquestionresponse' href='../Instructor/activate-question-results.php'>Click to close question</a>";
              echo "<div id='countdowncontainer'><label>Timer:</label> <label id='countdown'></label></div>";
+            //  $db = new Database();
+            //  $questionController = new QuestionController($db);
+            //  $question = $questionController->GetQuestion($_POST["questionid"]);
+            //  print_r($question);
         } else {
              echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to activate! Question id is: $question->id </span></h1>";
-             echo "<a class='createquestionresponse' href='../Instructor/activate-question.html'>Click to return</a>";
+             echo "<a class='createquestionresponse' href='../Instructor/display-question.php'>Click to return</a>";
 
         }
     ?>

@@ -17,15 +17,8 @@
             <h1 class="loginheader">Activate Question</h1>
             <form id="mediumform" class="container" action="activate-question.php" method="POST">
                 <div>
-                    <label>Enter question id or question name to enable question</label>
-                </div>
-                <div>
                     <label>Question id: </label>
                     <input id="activateinput1" type="number" name="questionid" />
-                </div>
-                <div>
-                    <label>Question name: </label>
-                    <input type="text" name="questionname" />
                 </div>
                 <input type="submit" />
                 <input type="reset" />
