@@ -5,7 +5,7 @@
         <meta name="description" content="Post question to database; informs user on success">
         <meta name="keywords" content="post, questions">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="../General/login-page.css">
+        <link rel="stylesheet" href="../login-page.css">
         <title>get Question</title>
     </head>
     <body>
@@ -19,11 +19,11 @@
                 $randomNumber = rand(1,5000);
                 print_r($_POST);                
                 echo "<h1 class='createquestionresponse'><span id='success'>Question id: $randomNumber has been deleted! </span></h1>";
-                echo "<a class='createquestionresponse' href='../instructor/create-question.html'>Click to return</a>";
+                echo "<a class='createquestionresponse' href='../instructor/create-question.php'>Click to return</a>";
             } else {
                 print_r($_POST);
                 echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to delete</span></h1>";
-                echo "<a class='createquestionresponse' href='../instructor/create-question.html'>Click to return</a>";
+                echo "<a class='createquestionresponse' href='../instructor/create-question.php'>Click to return</a>";
             }
         ?>
         <?php require_once('../General/footer.php')?>

@@ -1,8 +1,8 @@
 <?PHP
 ini_set('display_errors', 1); // DEBUG
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Question.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="description" content="Post question to database; informs user on success">
         <meta name="keywords" content="post, questions">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/login-page.css"; ?>">
         <title>Get Question</title>
     </head>
     <body>

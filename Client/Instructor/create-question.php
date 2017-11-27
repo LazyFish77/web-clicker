@@ -12,7 +12,7 @@
         <meta name="author" content="Tyler Fischer">
         <meta charset="UTF-8">
         <title>Web Clicker</title>
-        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/login-page.css"; ?>">
     </head>
 
 <body>
@@ -20,7 +20,7 @@
     <div id="flexbox">
         <div>
             <h1 class="loginheader">Add Question</h1>
-            <form id="tallform" class="container" action="../Instructor/submit-created-question.php" method="POST">
+            <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>
                     <label>Question statement: </label>
                     <textarea required rows="5" cols="40" name="questionstatement"></textarea>
@@ -63,7 +63,7 @@
         </div>
         <div>
             <h1 class="loginheader">Edit Question</h1>
-            <form class="container" action="../Instructor/get-question.php" method="POST">
+            <form class="container" action="./get-question.php" method="POST">
                 <div>
                     <label>Select question by name or id to delete: </label>
                 </div>
@@ -81,7 +81,7 @@
         </div>
         <div>
             <h1 class="loginheader">Delete Question</h1>
-            <form class="container" action="../Instructor/delete-question.php" method="POST">
+            <form class="container" action="./delete-question.php" method="POST">
                 <div>
                     <label>Select question by name or id to delete: </label>
                 </div>

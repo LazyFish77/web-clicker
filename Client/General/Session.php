@@ -1,8 +1,8 @@
 <?PHP
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/UserController.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/User.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/IDisposable.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/UserController.php");
+require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/User.php");
+require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/IDisposable.php");
 
 class Session implements IDisposable {
 
