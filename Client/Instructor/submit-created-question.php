@@ -4,6 +4,7 @@ require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionContr
 require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Question.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    date_default_timezone_set("America/Chicago");
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
 
@@ -22,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         $result = $questionCtrl->AddQuestion($question);
+        $questionCtrl->Dispose();
     } catch (Exception $e) {
         echo $e->getMessage();
-    } finally {
         $questionCtrl->Dispose();
     }
 }
@@ -42,19 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <body>
         <?php require_once("../General/instructor-nav.php") ?>
         <?php 
-            if(isset($result) && $result !== null) {
-                // $randomNumber = rand(1,5000);
-                // print_r($_POST);                
+            if(isset($result) && $result !== null) {                
                 echo "<h1 class='createquestionresponse'><span id='success'>Your question has been submitted! Question id is: $result->id</span></h1>";
                 echo "<a class='createquestionresponse' href='create-question.php'>Click to return</a>";
             } else {
-                // print_r($_POST);
                 echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to submit</span></h1>";
                 echo "<a class='createquestionresponse' href='create-question.php'>Click to return</a>";
             }
-            // function addQuestionToDatabase(){
-            //     return rand(0,1) === 1;
-            // }
         ?>
         <?php require_once('../General/footer.php')?>
     </body>
