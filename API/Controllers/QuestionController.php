@@ -32,7 +32,6 @@ class QuestionController extends BaseController {
         }
 
         $question->id = $this->questionService->GetNextId();
-        echo "ID: " . $question->id;
         $this->questionService->Insert($question);
 
         return $question;
