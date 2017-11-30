@@ -26,7 +26,6 @@ class QuestionController extends BaseController {
      * @return Question object on success, null on failure
      */
     public function AddQuestion(Question $question) {
-        echo "HI!";
         if(!$question->IsValid()) {
             echo "invalid model";
             return null;

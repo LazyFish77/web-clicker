@@ -16,14 +16,12 @@
             return rand(0,1) === 1;
             }
             if(deleteQuestionFromDatabase()) {
-                $randomNumber = rand(1,5000);
-                print_r($_POST);                
+                $randomNumber = rand(1,5000);                
                 echo "<h1 class='createquestionresponse'><span id='success'>Question id: $randomNumber has been deleted! </span></h1>";
-                echo "<a class='createquestionresponse' href='../instructor/create-question.php'>Click to return</a>";
+                echo "<a class='createquestionresponse' href='create-question.php'>Click to return</a>";
             } else {
-                print_r($_POST);
                 echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to delete</span></h1>";
-                echo "<a class='createquestionresponse' href='../instructor/create-question.php'>Click to return</a>";
+                echo "<a class='createquestionresponse' href='create-question.php'>Click to return</a>";
             }
         ?>
         <?php require_once('../General/footer.php')?>

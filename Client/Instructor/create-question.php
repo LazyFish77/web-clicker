@@ -17,17 +17,18 @@
 
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
-    <div id="flexbox">
+    <div class="flexbox">
         <div>
             <h1 class="loginheader">Add Question</h1>
             <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>
-                    <label>Question statement: </label>
-                    <textarea required rows="5" cols="40" name="questionstatement"></textarea>
+                    <label>Section number: </label>
+                    <input required id="createinput4" type="number" name="sectionnumber" />
                 </div>
                 <div>
-                    <label> Description of question:</label>
-                    <br />
+                    <label class="question">Question statement: </label>
+                    <label class="question">Description of question:</label>
+                    <textarea required rows="5" cols="40" name="questionstatement"></textarea>
                     <textarea required rows="5" cols="40" name="descriptionofquestion"></textarea>
                 </div>
                 <div>
@@ -35,8 +36,6 @@
                     <select required id="createselection1" name="questiontype">
                         <option disabled selected value> --- select an option --- </option>
                         <option value="<?PHP echo QuestionController::TYPE_SHORT_ANSWER; ?>">Text box</option>
-                        <!-- <option value="select">Select</option> -->
-                        <!-- <option value="tf">True or false</option> -->
                         <option value="<?PHP echo QuestionController::TYPE_RADIO; ?>">Radio buttons</option>
                         <option value="<?PHP echo QuestionController::TYPE_CHECKBOX; ?>">Checkbox</option>
                     </select>
@@ -54,15 +53,16 @@
                     <input required id="createinput3" type="text" name="topickeywords" />
                 </div>
                 <div>
-                    <label>Section number: </label>
-                    <input required id="createinput4" type="number" name="sectionnumber" />
+                    <label>Automatic Grader: </label>
+                    <br />
+                    <textarea required rows="5" cols="40" name="autograder"></textarea>
                 </div>
                 <input class="newpasswordsubmit" type="submit" />
                 <input class="newpasswordclear" type="reset" />
             </form>
         </div>
         <div>
-            <h1 class="loginheader">Edit Question</h1>
+            <h1 class="loginheader2">Edit Question</h1>
             <form class="container" action="./get-question.php" method="POST">
                 <div>
                     <label>Select question by name or id to delete: </label>
@@ -78,9 +78,8 @@
                 <input class="newpasswordsubmit" type="submit" />
                 <input class="newpasswordclear" type="reset" />
             </form>
-        </div>
-        <div>
-            <h1 class="loginheader">Delete Question</h1>
+
+            <h1 id="delete" class="loginheader2">Delete Question</h1>
             <form class="container" action="./delete-question.php" method="POST">
                 <div>
                     <label>Select question by name or id to delete: </label>
@@ -96,7 +95,7 @@
                 <input type="submit" />
                 <input type="reset" />
             </form>
-        </div>
+        </div>        
     </div>
     <?php require_once('../General/footer.php')?>
 </body>
