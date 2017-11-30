@@ -38,6 +38,21 @@ class QuestionController extends BaseController {
     }
 
     /**
+     * Updates existing question in database.
+     * @param question An instance on a Question class
+     * @return Question object on success, null on failure
+     */
+    public function UpdateQuestion(Question $question) {
+        if(!$question->IsValid()) {
+            echo "invalid model";
+            return null;
+        }
+
+        $this->questionService->Update($question);
+        return $question;
+    }
+
+    /**
      * Fetches a single question from the database by it's ID
      * @param id The Id number for the question being searched for
      * @return Question object on success

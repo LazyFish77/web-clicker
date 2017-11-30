@@ -73,6 +73,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <textarea rows="5" cols="40" name="options"><?PHP echo $question->options; ?></textarea>            
                         <textarea required rows="5" cols="40" name="autograder"><?PHP echo $question->grader; ?></textarea>
                     </div>
+                    <input type="hidden" name="id" value="<?PHP echo $question->id; ?>" />
+                    <input type="hidden" name="update" value="update" />
                     <input required id='newpasswordsubmit' type='submit' />
                     <input required id='newpasswordclear' type='reset' />
                 </form>

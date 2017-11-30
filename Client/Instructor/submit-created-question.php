@@ -9,6 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $questionCtrl = new QuestionController($dbContext);
 
     $question = new Question();
+    if (isset($_POST['id'])) {
+        $question->id = $_POST['id'];
+    }
     $question->status = QUESTION_INACTIVE;
     $question->question_type = $_POST['questiontype'];
     $question->question = $_POST['questionstatement'];
@@ -22,8 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $question->start_timestamp = date('Y-m-d H:i:s');
     $question->end_timestamp = date('Y-m-d H:i:s');
 
-    try {
-        $result = $questionCtrl->AddQuestion($question);
+    try {        
+        if (isset($_POST['update'])) {
+            echo $question->id;
+            $result = $questionCtrl->UpdateQuestion($question);
+        } else {
+            $result = $questionCtrl->AddQuestion($question);
+        }
         $questionCtrl->Dispose();
     } catch (Exception $e) {
         echo $e->getMessage();

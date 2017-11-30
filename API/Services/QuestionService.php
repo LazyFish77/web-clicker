@@ -66,9 +66,26 @@ class QuestionService extends BaseService {
         return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
 
-    // TODO: figure out which fields need to be updated
+    /**
+     * Updates an existing question in the database
+     */
     public function Update(Question $question) {
-        //$query = "UPDATE questions SET question = ".$question->question
+        $query = "UPDATE questions SET question_type=?, question=?, options=?, answer=?, points=?, description=?, grader=?, section=?, keywords=?, start_timestamp=?, end_timestamp=? WHERE id=?";
+        $params = array(            
+            "question_type" => $question->question_type,
+            "question" => $question->question,
+            "options" => $question->options,
+            "answer" => $question->answer,
+            "points" => $question->points,
+            "description" => $question->description,
+            "grader" => $question->grader,
+            "section" => $question->section,
+            "keywords" => $question->keywords,
+            "start_timestamp" => $question->start_timestamp,
+            "end_timestamp" => $question->end_timestamp,
+            "id" => $question->id
+        );
+        return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
 
     /**
