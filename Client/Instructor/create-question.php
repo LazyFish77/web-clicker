@@ -53,7 +53,7 @@
                     <input required id="createinput3" type="text" name="topickeywords" />
                 </div>
                 <div>
-                    <label class="question">Options (if applicable, separate options with '|||'): </label>
+                    <label class="question">Options (if applicable, separate options with '||'): </label>
                     <label class="question">Automatic Grader: </label>
                     <textarea rows="5" cols="40" name="options"></textarea>                    
                     <textarea required rows="5" cols="40" name="autograder"></textarea>

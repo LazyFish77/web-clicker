@@ -50,8 +50,8 @@ class QuestionService extends BaseService {
      */
     public function Insert(Question $question) {
         $query = "INSERT INTO questions
-                  (id, status, question_type, question, options, points, description, grader, section, keywords, start_timestamp, end_timestamp)
-                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+                  (id, status, question_type, question, options, answer, points, description, grader, section, keywords, start_timestamp, end_timestamp)
+                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return $this->db->ExecuteNonQuery($query, $question->Serialize()) > 0;
     }
 

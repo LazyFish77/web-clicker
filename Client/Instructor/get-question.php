@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="flexbox">
             <div>
-                <h1 class="loginheader">Edit Question Number: <?PHP echo $question->id; ?></h1>
+                <h1 class="loginheader">Edit Question Id: <?PHP echo $question->id; ?></h1>
                 <form id='tallform' class='container' action='../Instructor/submit-created-question.php' method='POST'>
                     <div>
                         <label>Section number: </label>
@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div>
                         <label>Question answer:</label>
-                        <input required id='createinput1' type='text' name='questionanswer' value='$questionAnswer' />
+                        <input required id='createinput1' type='text' name='questionanswer' value='<?PHP echo $question->answer; ?>' />
                     </div>
                     <div>
                         <label>Number of points:</label>
@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input required id='createinput3' type='text' name='topickeywords' value='<?PHP echo $question->keywords; ?>' />
                     </div>
                     <div>
-                        <label class="question">Options (if applicable, separate options with '|||'): </label>
+                        <label class="question">Options (if applicable, separate options with '||'): </label>
                         <label class="question">Automatic Grader: </label>
                         <textarea rows="5" cols="40" name="options"><?PHP echo $question->options; ?></textarea>            
                         <textarea required rows="5" cols="40" name="autograder"><?PHP echo $question->grader; ?></textarea>

@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $question->question_type = $_POST['questiontype'];
     $question->question = $_POST['questionstatement'];
     $question->options = $_POST['options'];
+    $question->answer = $_POST['questionanswer'];
     $question->points = $_POST['numberofpoints'];
     $question->description = $_POST['descriptionofquestion'];
     $question->grader = $_POST['autograder'];
