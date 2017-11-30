@@ -34,14 +34,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="flexbox">
             <div>
-                <h1 class="loginheader">Edit Question</h1>
+                <h1 class="loginheader">Edit Question Number: <?PHP echo $question->id; ?></h1>
                 <form id='tallform' class='container' action='../Instructor/submit-created-question.php' method='POST'>
                     <div>
-                        <label>Id number: <?PHP echo $question->id; ?> </label>
-                    </div>
-                    <div>
                         <label>Section number: </label>
-                        <input required id='createinput4' type='text' name='sectionnumber' value='<?PHP echo $question->section; ?>'/>             
+                        <input required id='createinput4' type='text' name='sectionnumber' step="0.01" value='<?PHP echo $question->section; ?>'/>             
                     </div>
                     <div>
                         <label class="question">Question statement: </label>
@@ -71,9 +68,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input required id='createinput3' type='text' name='topickeywords' value='<?PHP echo $question->keywords; ?>' />
                     </div>
                     <div>
-                        <label>Automatic Grader:</label>
-                        <br />
-                        <textarea required rows='5' cols='40' name='autograder'><?PHP echo $question->grader; ?></textarea>
+                        <label class="question">Options (if applicable, separate options with '|||'): </label>
+                        <label class="question">Automatic Grader: </label>
+                        <textarea rows="5" cols="40" name="options"><?PHP echo $question->options; ?></textarea>            
+                        <textarea required rows="5" cols="40" name="autograder"><?PHP echo $question->grader; ?></textarea>
                     </div>
                     <input required id='newpasswordsubmit' type='submit' />
                     <input required id='newpasswordclear' type='reset' />

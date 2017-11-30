@@ -12,10 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $question->status = QUESTION_INACTIVE;
     $question->question_type = $_POST['questiontype'];
     $question->question = $_POST['questionstatement'];
-    $question->options = null;
+    $question->options = $_POST['options'];
     $question->points = $_POST['numberofpoints'];
     $question->description = $_POST['descriptionofquestion'];
-    $question->grader = ""; // TODO, add grader form field
+    $question->grader = $_POST['autograder'];
     $question->section = $_POST['sectionnumber'];
     $question->keywords = $_POST['topickeywords'];
     $question->start_timestamp = date('Y-m-d H:i:s');

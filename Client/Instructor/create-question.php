@@ -23,7 +23,7 @@
             <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>
                     <label>Section number: </label>
-                    <input required id="createinput4" type="number" name="sectionnumber" />
+                    <input required id="createinput4" type="number" name="sectionnumber" step="0.01"/>
                 </div>
                 <div>
                     <label class="question">Question statement: </label>
@@ -53,8 +53,9 @@
                     <input required id="createinput3" type="text" name="topickeywords" />
                 </div>
                 <div>
-                    <label>Automatic Grader: </label>
-                    <br />
+                    <label class="question">Options (if applicable, separate options with '|||'): </label>
+                    <label class="question">Automatic Grader: </label>
+                    <textarea rows="5" cols="40" name="options"></textarea>                    
                     <textarea required rows="5" cols="40" name="autograder"></textarea>
                 </div>
                 <input class="newpasswordsubmit" type="submit" />
