@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     date_default_timezone_set("America/Chicago");
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
-
     $question = new Question();
+
     if (isset($_POST['id'])) {
         $question->id = $_POST['id'];
     }
@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {        
         if (isset($_POST['update'])) {
-            echo $question->id;
             $result = $questionCtrl->UpdateQuestion($question);
         } else {
             $result = $questionCtrl->AddQuestion($question);

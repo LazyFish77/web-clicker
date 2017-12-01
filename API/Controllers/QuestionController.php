@@ -53,6 +53,16 @@ class QuestionController extends BaseController {
     }
 
     /**
+     * Deletes an existing question from the database.
+     * @param id The id of the question being deleted
+     * @return Question object on success, null on failure
+     */
+    public function DeleteQuestion($id) {
+        $this->questionService->Delete($id);
+        return $id;
+    }
+
+    /**
      * Fetches a single question from the database by it's ID
      * @param id The Id number for the question being searched for
      * @return Question object on success

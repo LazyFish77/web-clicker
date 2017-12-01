@@ -58,10 +58,10 @@ class QuestionService extends BaseService {
     /**
      * Deletes an existing question from the database
      */
-    public function Delete(Question $question) {
+    public function Delete($id) {
         $query = "DELETE FROM questions WHERE id = ?";
         $params = array(
-            "id" => $question->id
+            "id" => $id
         );
         return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
