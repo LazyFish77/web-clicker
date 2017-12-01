@@ -18,7 +18,7 @@
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
     <div class="flexbox">
-        <div>
+        <div class="flexchild">
             <h1 class="loginheader">Add Question</h1>
             <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>

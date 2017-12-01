@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         ?>
 
         <div class="flexbox">
-            <div>
+            <div class="flexchild">
                 <h1 class="loginheader">Edit Question Id: <?PHP echo $question->id; ?></h1>
                 <form id='tallform' class='container' action='../Instructor/submit-created-question.php' method='POST'>
                     <div>

@@ -24,10 +24,10 @@ html {
 .loginheader {
     background-color: black;
     color: green;
-    margin: auto;
+    margin: 0px;
     position: relative;
     top: 50px;
-    width: 625px;
+    width: 96%;
     height: 30px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -190,7 +190,8 @@ li {
 }
 #tallform {
     min-height: 500px;
-    width: 650px;
+    width: 100%;
+    margin: 0px;
 }
 #tallerform {
     min-height: 600px;
@@ -228,6 +229,9 @@ li {
     flex-wrap: wrap;
     justify-content: space-around;
     overflow-y: scroll;
+}
+.flexchild{
+    width: 50%;
 }
 .deleteinput{
     margin-left: 94px;
