@@ -3,6 +3,15 @@ ini_set('display_errors', 1); // DEBUG
 require_once(realpath(dirname(__FILE__)) . "/Session.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/UserController.php");
+$user = $_SESSION['user'];
+$role = "";
+switch($user->type) {
+    case UserController::INSTRUCTOR:
+        $role = "instructor";
+    case UserController::STUDENT:
+    $role = "student";
+} 
+require_once(realpath(dirname(__FILE__)) . "/" . role . "-nav.php");
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -49,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?PHP
         }
     ?>
-    <h1 class="loginheader">Change Password</h1>
+
+    <h1 class="loginheader2">Change Password</h1>
     <form class="container" action="change-password.php" method="post">
         <div>
             <label class="inputkey">Current Password:</label>
