@@ -14,7 +14,7 @@
 <body>
     <?php require_once("../General/student-nav.php");?>
     <div id="reviewoldquestionscontainer">
-        <h1 class="loginheader"> Filter Questions</h1>
+        <h1 class="loginheader2"> Filter Questions</h1>
         <form id="queryform" action="./get-questions.php" method="GET">
             <div>
                 <label id="totalpoints">Amount of points: </label>
