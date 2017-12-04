@@ -6,7 +6,8 @@ body {
     width: 100%;
     height: 100%;
     margin: 0px 0px 0px 0px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 html {
     width: 100%;
@@ -23,6 +24,18 @@ html {
 .loginheader {
     background-color: black;
     color: green;
+    margin: 0px;
+    position: relative;
+    top: 50px;
+    width: 96%;
+    height: 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+.loginheader2 {
+    background-color: black;
+    color: green;
     margin: auto;
     position: relative;
     top: 50px;
@@ -31,7 +44,6 @@ html {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
-
 }
 form {
     border: 3px black solid;
@@ -178,6 +190,8 @@ li {
 }
 #tallform {
     min-height: 500px;
+    width: 100%;
+    margin: 0px;
 }
 #tallerform {
     min-height: 600px;
@@ -209,10 +223,15 @@ li {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 }
-#flexbox{
+.flexbox{
     display: flex;
     flex-direction: row; 
+    flex-wrap: wrap;
     justify-content: space-around;
+    overflow-y: scroll;
+}
+.flexchild{
+    width: 50%;
 }
 .deleteinput{
     margin-left: 94px;
@@ -237,21 +256,11 @@ li {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 75px;
+    height: 85px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: rgba(255, 255, 255, 0.218);
-    /* position: absolute;
-    margin-top: 1rem;
-    background-color: #efefef;
-    text-align: center;
-    height: 60px;
-    /*
-    width: 100%;
-    position: fixed;
-    bottom: 1px;
-     */
 }
 .footerimage{
     position: relative;
@@ -319,4 +328,11 @@ li {
     top: 5%;
     margin: auto;
     width: 80%;
+}
+.question {
+    display: inline-block;
+    width: 47%;
+}
+#delete {
+    margin-top: 10px;
 }

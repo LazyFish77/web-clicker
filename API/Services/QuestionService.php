@@ -50,25 +50,42 @@ class QuestionService extends BaseService {
      */
     public function Insert(Question $question) {
         $query = "INSERT INTO questions
-                  (id, status, question_type, question, options, points, description, grader, section, keywords, start_timestamp, end_timestamp)
-                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+                  (id, status, question_type, question, options, answer, points, description, grader, section, keywords, start_timestamp, end_timestamp)
+                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return $this->db->ExecuteNonQuery($query, $question->Serialize()) > 0;
     }
 
     /**
      * Deletes an existing question from the database
      */
-    public function Delete(Question $question) {
+    public function Delete($id) {
         $query = "DELETE FROM questions WHERE id = ?";
         $params = array(
-            "id" => $question->id
+            "id" => $id
         );
         return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
 
-    // TODO: figure out which fields need to be updated
+    /**
+     * Updates an existing question in the database
+     */
     public function Update(Question $question) {
-        //$query = "UPDATE questions SET question = ".$question->question
+        $query = "UPDATE questions SET question_type=?, question=?, options=?, answer=?, points=?, description=?, grader=?, section=?, keywords=?, start_timestamp=?, end_timestamp=? WHERE id=?";
+        $params = array(            
+            "question_type" => $question->question_type,
+            "question" => $question->question,
+            "options" => $question->options,
+            "answer" => $question->answer,
+            "points" => $question->points,
+            "description" => $question->description,
+            "grader" => $question->grader,
+            "section" => $question->section,
+            "keywords" => $question->keywords,
+            "start_timestamp" => $question->start_timestamp,
+            "end_timestamp" => $question->end_timestamp,
+            "id" => $question->id
+        );
+        return $this->db->ExecuteNonQuery($query, $params) > 0;
     }
 
     /**

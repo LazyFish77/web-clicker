@@ -1,8 +1,8 @@
 <?PHP
 // ini_set('display_errors', 1);
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Database/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/API/Controllers/QuestionController.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/web-clicker/Shared/Models/Question.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Question.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="description" content="Activates selected question for students to view">
         <meta name="keywords" content="activate, question">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. "/web-clicker/Client/login-page.css"; ?>">
+        <link rel="stylesheet" href="http://<?PHP echo "webdev.cs.uwosh.edu". WEB_ROOT . "/Client/login-page.css"; ?>">
         <script src="countdown.js"></script>
         <title>Web Clicker</title>
     </head>

@@ -7,5 +7,5 @@
     define("QUESTION_ACTIVE", 1);
     define("QUESTION_INACTIVE", 0);
 
-    define("WEB_ROOT", "/web-clicker");
+    define("WEB_ROOT", "/students/lewisc24/web-clicker");
 ?>

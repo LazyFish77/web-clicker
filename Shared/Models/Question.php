@@ -9,6 +9,7 @@
         public $question_type = null;
         public $question = null;
         public $options = null;
+        public $answer = null;
         public $points = null;
         public $description = null;
         public $grader = null;
@@ -38,6 +39,9 @@
             }
             if(isset($input['options'])) {
                 $this->options = $input['options'];
+            }
+            if(isset($input['answer'])) {
+                $this->answer = $input['answer'];
             }
             if(isset($input['points'])) {
                 $this->points = $input['points'];
@@ -73,6 +77,7 @@
                 'question_type' => $this->question_type,
                 'question' => $this->question,
                 'options' => $this->options,
+                'answer' => $this->answer,
                 'points' => $this->points,
                 'description' => $this->description,
                 'grader' => $this->grader,
