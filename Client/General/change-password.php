@@ -3,15 +3,6 @@ ini_set('display_errors', 1); // DEBUG
 require_once(realpath(dirname(__FILE__)) . "/Session.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/UserController.php");
-$user = $_SESSION['user'];
-$role = "";
-switch($user->type) {
-    case UserController::INSTRUCTOR:
-        $role = "instructor";
-    case UserController::STUDENT:
-    $role = "student";
-} 
-require_once(realpath(dirname(__FILE__)) . "/" . role . "-nav.php");
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -37,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 
 <head>
-    <meta name="description" content="Allows students to login into web clicker application">
-    <meta name="keywords" content="Login">
+    <meta name="description" content="Password change">
+    <meta name="keywords" content="password change">
     <meta name="author" content="Tyler Fischer">
     <meta charset="UTF-8">
     <title>Web Clicker</title>
@@ -48,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <?php
+        require_once(realpath(dirname(__FILE__)) . "/" . ($_SESSION['user']->type == 1 ? "instructor" : "student") . "-nav.php");
         if(isset($_SESSION["message"])) {
     ?>
         <div class="errors">
@@ -56,14 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
         </div>
     <?PHP
-        }
+        }        
     ?>
 
     <h1 class="loginheader2">Change Password</h1>
     <form class="container" action="change-password.php" method="post">
         <div>
             <label class="inputkey">Current Password:</label>
-            <input type="password" name="currentpassword"  id="currentpassword" required />
+            <input type="oldpassword" name="currentpassword"  id="currentpassword" required />
         </div>
         <div>
             <label class="inputkey">New Password:</label>
