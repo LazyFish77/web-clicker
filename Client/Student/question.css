@@ -36,3 +36,11 @@ section#options {
     font-weight: bold;
     cursor: pointer;
 }
+
+ol {
+    list-style-type: lower-alpha;
+}
+
+li {
+    color: black;
+}
