@@ -26,14 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
         <div class="errors">
     <?PHP
-            echo"howdy";
             echo $_SESSION['message'];
     ?>
         </div>
     <?PHP
         }
     ?>
-    <h1 class="loginheader">Login</h1>
+    <h1 class="loginheader2">Login</h1>
     <form class="container" action="login.php" method="post">
         <div>
             <label class="inputkey">User Name:</label>

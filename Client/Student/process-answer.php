@@ -1,8 +1,16 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // Redirect to next-question.html (user tried to navigate to this page directly)
-    header('Location: next-question.php');
-}
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    $dbContext = new Database();
+    $questionCtrl = new QuestionController($dbContext);
+    $questions = $questionCtrl->GetActiveQuestions();
+    $question = $questions[0];
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        // Redirect to next-question.html (user tried to navigate to this page directly)
+        header('Location: next-question.php');
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -17,24 +25,21 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     </head>
     <body>
         <?php
-        require_once("../General/student-nav.php");
-        require_once("../../Server/constants.php");
-        require_once(SITE_ROOT . "/Server/database.php");
-        $db = new Database();
-        $question = $db->get_active_question();
-        $db->disconnect();
-        if ($question->type === MULTI_CHOICE) {
-            $answer = [];
-            for ($i = 0; $i < 10; $i++) {
-                if (isset($_POST[chr($i+97)])) {
-                    array_push($answer, $_POST[chr($i+97)]);
+            require_once("../General/student-nav.php");
+            $guess = "";
+            $answer = $question->answer;
+            if ($question->question_type == QuestionController::TYPE_CHECKBOX) {
+                for ($i = 0; $i < 10; $i++) {
+                    if (isset($_POST[chr($i+97)])) {
+                        $guess = $guess . $_POST[chr($i+97)];
+                    }
                 }
+            } else if ($question->question_type == QuestionController::TYPE_RADIO) {
+                $guess = isset($_POST['a']) ? 'a' : 'b';
+            } else if ($question->question_type == QuestionController::TYPE_SHORT_ANSWER) {
+                $guess = $_POST['answer'];
             }
-        }
-        $answer = implode('', $answer); // At this point, $answer is in this format (for example): "acd"
-        // TODO: Get the student's ID from the session & load the Student object from the DB
-        // (Assign this Student object to a variable like $student)
-        // Then, call $student->answer_question($question, $answer)
+        
         ?>
         <div id="score">
 

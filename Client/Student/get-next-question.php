@@ -1,8 +1,14 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // Redirect to next-question.html (user tried to navigate to this page directly)
-    header('Location: next-question.php');
-}
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    $dbContext = new Database();
+    $questionCtrl = new QuestionController($dbContext);
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        // Redirect to next-question.html (user tried to navigate to this page directly)
+        header('Location: next-question.php');
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -17,34 +23,46 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         <title>Get Question</title>
     </head>
     <body>
+        <div>
         <?php
-            require_once("../General/student-nav.php");
-            require_once("../../Server/constants.php");
-            require_once(SITE_ROOT . "/Server/database.php");
-            $db = new Database();
-            $question = $db->get_active_question();
-            $db->disconnect();
+            require_once("../General/student-nav.php");             
+            $questions = $questionCtrl->GetActiveQuestions();
+            $questionCtrl->Dispose();
+            $question = $questions[0];
+
             if ($question) {
-                print('<form id="questionform" action="process-answer.php" method="post">');
-                    print('<h1>Question</h1>');
-                    print('<pre>' . $question->prompt . '</pre>');
-                    print('<section id="options"');
-                    if ($question->type === MULTI_CHOICE) {
+                echo "<form id=\"questionform\" action=\"./process-answer.php\" method=\"post\">";
+                    echo "<h1>Question $question->id</h1>";
+                    echo "<pre>$question->question</pre>";
+                    echo "<section id=\"options\">";
+                    if ($question->question_type == QuestionController::TYPE_CHECKBOX) {
                         $i = 97; // ASCII code for "a", so each input element has a unique name
-                        foreach ($question->options as $option) {
-                            print('<label><input type="checkbox" name="' . chr($i++) .'" />' . $option . '</label><br />');
+                        $options = preg_split("/\|\|/", $question->options);
+                        echo "<ol>";
+                        foreach ($options as $option) {
+                            $option = trim($option);
+                            echo  "<li><label><input type=\"checkbox\" name=\"". chr($i) . "\" value=\"". chr($i) . "\"/>" . $option . "</label></li>";
                         }
-                    } else if ($question->type === SHORT_ANSWER) {
-                        print('<label>Type your answer:<input type="text" name="answer" /></label>');
-                    }
-                    print('</section>');
-                    print('<input type="submit" value="Submit Answer" />');
-                print('</form>');
+                        echo "</ol>";
+                    } else if ($question->question_type == QuestionController::TYPE_RADIO) {
+                        echo "<ol>";
+                            echo "<li><label><input type=\"radio\" name=\"a\" value=\"a\" />True</label></li>";
+                            echo "<li><label><input type=\"radio\" name=\"b\" value=\"b\" />False</label></li>";
+                        echo "</ol>";
+                    } else if ($question->question_type == QuestionController::TYPE_SHORT_ANSWER) {
+                        echo "<label>Type your answer: <input type=\"text\" name=\"answer\" /></label>";
+                    } 
+                    echo "</section>";
+                    echo "<input type=\"submit\" value=\"Submit Answer\" />";
+                echo "</form>";
             } else {
                 echo "<div id='noquestion'>There is no question to view
                     <a id='returnlink' href='../Student/next-question.html'> click to return</a> </div>";
             }
         ?>
-        <?php require_once('../General/footer.php')?>
+        </div>
+        <div>
+            <?php require_once('../General/footer.php')?>
+        </div>
     </body>
 </html>

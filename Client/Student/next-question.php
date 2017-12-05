@@ -12,7 +12,7 @@
 
 <body>
     <?php require_once("../General/student-nav.php");?>
-    <h1 class="loginheader"> Show question</h1>
+    <h1 class="loginheader2"> Show question</h1>
     <form class="container" action="../Student/get-next-question.php" method="POST">
         <p id="showquestionp">
             If your instructor has activated a question you may view the question.

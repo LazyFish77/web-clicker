@@ -10,7 +10,7 @@ class QuestionController extends BaseController {
     
     const TYPE_CHECKBOX = 0; // Question type multiple choice
     const TYPE_SHORT_ANSWER = 1; // Question type short answer
-    const TYPE_RADIO = 2;
+    const TYPE_RADIO = 2; // Question type true/false
 
     // Questionr Service encapsulates the raw SQL statements we'll need to make
     private $questionService = null;
@@ -26,17 +26,40 @@ class QuestionController extends BaseController {
      * @return Question object on success, null on failure
      */
     public function AddQuestion(Question $question) {
-        echo "HI!";
         if(!$question->IsValid()) {
             echo "invalid model";
             return null;
         }
 
         $question->id = $this->questionService->GetNextId();
-        echo "ID: " . $question->id;
         $this->questionService->Insert($question);
 
         return $question;
+    }
+
+    /**
+     * Updates existing question in database.
+     * @param question An instance on a Question class
+     * @return Question object on success, null on failure
+     */
+    public function UpdateQuestion(Question $question) {
+        if(!$question->IsValid()) {
+            echo "invalid model";
+            return null;
+        }
+
+        $this->questionService->Update($question);
+        return $question;
+    }
+
+    /**
+     * Deletes an existing question from the database.
+     * @param id The id of the question being deleted
+     * @return Question object on success, null on failure
+     */
+    public function DeleteQuestion($id) {
+        $this->questionService->Delete($id);
+        return $id;
     }
 
     /**
