@@ -41,16 +41,16 @@
                         echo "<ol>";
                         foreach ($options as $option) {
                             $option = trim($option);
-                            echo  "<li><label><input type=\"checkbox\" name=\"". chr($i) . "\" value=\"". chr($i) . "\"/>" . $option . "</label></li>";
+                            echo  "<li><label><input type=\"checkbox\" name=\"multiple[]\" value=\"". chr($i++) . "\"/>" . $option . "</label></li>";
                         }
                         echo "</ol>";
                     } else if ($question->question_type == QuestionController::TYPE_RADIO) {
                         echo "<ol>";
-                            echo "<li><label><input type=\"radio\" name=\"a\" value=\"a\" />True</label></li>";
-                            echo "<li><label><input type=\"radio\" name=\"b\" value=\"b\" />False</label></li>";
+                            echo "<li><label><input type=\"radio\" name=\"single\" value=\"a\" />True</label></li>";
+                            echo "<li><label><input type=\"radio\" name=\"single\" value=\"b\" />False</label></li>";
                         echo "</ol>";
                     } else if ($question->question_type == QuestionController::TYPE_SHORT_ANSWER) {
-                        echo "<label>Type your answer: <input type=\"text\" name=\"answer\" /></label>";
+                        echo "<label>Type your answer: <input type=\"text\" name=\"short\" /></label>";
                     } 
                     echo "</section>";
                     echo "<input type=\"submit\" value=\"Submit Answer\" />";
