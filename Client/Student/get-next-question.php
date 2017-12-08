@@ -1,7 +1,9 @@
 <?php
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    $session = new Session();
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
 

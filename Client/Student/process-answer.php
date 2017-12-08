@@ -1,9 +1,15 @@
 <?php
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/AnswerController.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Answer.php");
+    $session = new Session();
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
+    $answerCtrl = new AnswerController($dbContext);
+    $finalAnswer = new Answer();
     $questions = $questionCtrl->GetActiveQuestions();
     $question = $questions[0];
 
@@ -16,10 +22,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="description" content="Returns question if the instructor has enabled one;
-            otherwise returns message saying could not get question">
-        <meta name="keywords" content="show question">
-        <meta name="author" content="Tyler Fischer">
+        <meta name="description" content="Displays student's score on the current question">
+        <meta name="keywords" content="show results">
+        <meta name="author" content="Tyler Fischer, Cory Lewis, Walter Woods">
         <link rel="stylesheet" href="../login-page.css">
         <link rel="stylesheet" href="question.css">
         <title>Results</title>
@@ -39,6 +44,21 @@
                 $guess = $_POST['short'];
             }
             $score = eval($question->grader);
+
+            $finalAnswer->question_id = $question->id;
+            $finalAnswer->student_id = $_SESSION['user']->username;
+            $finalAnswer->answer = $guess;
+            $finalAnswer->points_earned = $score;            
+
+            try {        
+                $answerCtrl->AddAnswer($finalAnswer);
+                $answerCtrl->Dispose();
+                $questionCtrl->Dispose();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                $answerCtrl->Dispose();
+                $questionCtrl->Dispose();
+            }
         ?>
         <div>
             <form id="questionform">
