@@ -24,7 +24,7 @@
     <body>        
         <?php 
             require_once("../General/student-nav.php");
-            echo "<div id=\"flexbox\">";
+            echo "<div id=\"wrapper\">";
             foreach($answers as $answer) {
                 $question = $questionCtrl->GetQuestion($answer['question_id']);
                 echo"<div id='questionbeingviewed'>";
