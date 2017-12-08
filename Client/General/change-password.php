@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form class="container" action="change-password.php" method="post">
         <div>
             <label class="inputkey">Current Password:</label>
-            <input type="oldpassword" name="currentpassword"  id="currentpassword" required />
+            <input type="password" name="currentpassword"  id="currentpassword" required />
         </div>
         <div>
             <label class="inputkey">New Password:</label>
