@@ -176,10 +176,11 @@ li {
     margin-left: 16px;
 }
 #reviewinput3 {
-    margin-left: 16px;
+    margin-left: 13px;
 }
 #reviewselection1 {
     width:172px;
+    margin-left: 25px;
 }
 #createselection1{
     width:174px;
@@ -335,4 +336,9 @@ li {
 }
 #delete {
     margin-top: 10px;
+}
+
+wrapper {
+    overflow-y: scroll;
+    margin-bottom: 10px;
 }

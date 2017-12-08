@@ -2,9 +2,9 @@
 <html>
   
 <head>
-    <meta name="description" content="Allows students to reset their passwords">
-    <meta name="keywords" content="Password reset">
-    <meta name="author" content="Tyler Fischer">
+    <meta name="description" content="Allows students to review pas questions">
+    <meta name="keywords" content="Review Questions">
+    <meta name="author" content="Tyler Fischer, Cory Lewis, Walter Woods">
     <meta charset="UTF-8">
     <title>Web Clicker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,12 +25,11 @@
                 <input id="reviewinput2" type="text" name="topickeywords" />
             </div>
             <div>
-                <label>question statement: </label>
+                <label>Question type: </label>
                 <select id="reviewselection1">
                     <option disabled selected value> -- select an option -- </option>
                     <option value="textbox">Text box</option>
-                    <option value="select">Select</option>
-                    <option value="tf">True or false</option>
+                    <option value="tf">True / False</option>
                     <option value="radiobuttons">Radio buttons</option>
                     <option value="checkbox">Checkbox</option>
                 </select>
