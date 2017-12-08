@@ -38,7 +38,7 @@
             } else if ($question->question_type == QuestionController::TYPE_SHORT_ANSWER) {
                 $guess = $_POST['short'];
             }
-        
+            $score = eval($question->grader);
         ?>
         <div>
             <form id="questionform">
@@ -46,7 +46,7 @@
                     echo "<h1>Question $question->id</h1>";
                     echo "<p class=\"score\">Your Answer: $guess</p>";
                     echo "<p class=\"score\">Correct Answer: $answer</p>";
-                    echo "<p class=\"score\">Your Score:</p>";
+                    echo "<p class=\"score\">Your Score: $score</p>";
                     echo "<pre>$question->question</pre>";
                     echo "<section id=\"options\">";
                     if ($question->question_type == QuestionController::TYPE_CHECKBOX) {

@@ -27,7 +27,7 @@ html {
     margin: 0px;
     position: relative;
     top: 50px;
-    width: 96%;
+    width: 96.8%;
     height: 30px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -331,7 +331,7 @@ li {
 }
 .question {
     display: inline-block;
-    width: 47%;
+    width: 40%;
 }
 #delete {
     margin-top: 10px;
