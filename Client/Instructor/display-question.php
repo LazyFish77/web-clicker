@@ -1,3 +1,8 @@
+<?php 
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
+    $session = new Session();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +19,7 @@
     <?php require_once("../General/instructor-nav.php") ?>
     <div id="flexbox">
         <div>
-            <h1 class="loginheader">Activate Question</h1>
+            <h1 class="loginheader2">Activate Question</h1>
             <form id="mediumform" class="container" action="activate-question.php" method="POST">
                 <div>
                     <label>Question id: </label>

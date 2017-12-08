@@ -39,6 +39,6 @@
             }
             echo "</div>";
         ?>        
-       <?php require_once('../General/footer.php')?>
+       <?php require_once(realpath(dirname(__FILE__)) . '/../General/footer.php'); ?>
     </body>
 </html>

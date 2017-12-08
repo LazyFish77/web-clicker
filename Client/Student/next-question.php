@@ -1,3 +1,7 @@
+<?php 
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+    $session = new Session();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +23,7 @@
         </p>
         <input id="showquestion" type="submit" name="showquestion" value="Show question" />
     </form>
-    <?php require_once('../General/footer.php')?>
+    <?php require_once(realpath(dirname(__FILE__)) . '/../General/footer.php'); ?>
 </body>
 
 </html>
