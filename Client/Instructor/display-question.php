@@ -17,8 +17,8 @@
 
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
-    <div id="flexbox">
-        <div>
+    <div class="flexbox">
+        <div class="flexchild">
             <h1 class="loginheader">Activate Question</h1>
             <form id="mediumform" class="container" action="activate-question.php" method="POST">
                 <div>
