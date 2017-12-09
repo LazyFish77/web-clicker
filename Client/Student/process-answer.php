@@ -20,7 +20,7 @@
             otherwise returns message saying could not get question">
         <meta name="keywords" content="show question">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="../General/login-page.css">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <title>Results</title>
     </head>
     <body>

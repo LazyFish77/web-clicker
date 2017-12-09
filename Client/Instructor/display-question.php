@@ -1,3 +1,8 @@
+<?PHP 
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+    $session = new Session();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,13 +12,13 @@
     <meta name="author" content="Tyler Fischer">
     <meta charset="UTF-8">
     <title>Web Clicker</title>
-    <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/login-page.css"; ?>">
+    <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
 </head>
 
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
-    <div id="flexbox">
-        <div>
+    <div class="flexbox">
+        <div class="flexchild">
             <h1 class="loginheader">Activate Question</h1>
             <form id="mediumform" class="container" action="activate-question.php" method="POST">
                 <div>

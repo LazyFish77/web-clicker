@@ -8,4 +8,5 @@
     define("QUESTION_INACTIVE", 0);
 
     define("WEB_ROOT", "/students/lewisc24/web-clicker");
+    // define("WEB_ROOT", "/web-clicker"); // Walter's Web Root
 ?>
