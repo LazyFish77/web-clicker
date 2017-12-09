@@ -1,8 +1,11 @@
 <?PHP
 // ini_set('display_errors', 1);
+require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
 require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Question.php");
+$session = new Session();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -17,10 +20,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $result = $questionCtrl->ActivateQuestion($question);
             // $result = $questionCtrl->DeactivateQuestion($question);
+            $questionCtrl->Dispose();
         } catch (Exception $e) {
             // TODO, remove before production
             echo $e->getMessage();
-        } finally {
             $questionCtrl->Dispose();
         }
     }
@@ -38,11 +41,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <title>Web Clicker</title>
     </head>
     <body>
-        <?php require_once("../General/instructor-nav.php") ?>
+        <?php require_once("../General/instructor-nav.php"); ?>
     <?php 
         if(isset($result) && $result > 0) {
              echo "<h1 class='createquestionresponse'><span id='success'>Your question has been activated! Question id is: $question->id </span></h1>";
-             echo "<a class='createquestionresponse' href='../Instructor/activate-question-results.php'>Click to close question</a>";
+             echo "<a class='createquestionresponse' href='activate-question-results.php'>Click to close question</a>";
              echo "<div id='countdowncontainer'><label>Timer:</label> <label id='countdown'></label></div>";
             //  $db = new Database();
             //  $questionController = new QuestionController($db);
@@ -50,15 +53,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             //  print_r($question);
         } else {
              echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to activate! Question id is: $question->id </span></h1>";
-             echo "<a class='createquestionresponse' href='../Instructor/display-question.php'>Click to return</a>";
+             echo "<a class='createquestionresponse' href='display-question.php'>Click to return</a>";
 
         }
     ?>
-    <?php require_once('../General/footer.php')?>
+    <?php require_once(realpath(dirname(__FILE__)) . '/../General/footer.php'); ?>
     </body>
-    <?php 
-        // function activateQuestion() {
-        //     return rand(0,1) == 1;
-        // }
-    ?>
 </html>

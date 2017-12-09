@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1); // DEBUG
 require_once(realpath(dirname(__FILE__)). "/General/Session.php");
+require_once(realpath(dirname(__FILE__)). "/../API/Config.php");
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

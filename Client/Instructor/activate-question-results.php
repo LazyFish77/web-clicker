@@ -1,3 +1,8 @@
+<?php 
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
+    $session = new Session();
+?>
 <!DOCTYPE HTML>
 <html>
     <head>

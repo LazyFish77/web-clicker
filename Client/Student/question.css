@@ -44,3 +44,7 @@ ol {
 li {
     color: black;
 }
+
+.score {
+    margin-left: 25px;
+}

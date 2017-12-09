@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div>
                         <label class="question">Options (if applicable, separate options with '||'): </label>
-                        <label class="question">Automatic Grader: </label>
+                        <label class="question">Automatic Grader (use '$guess' as placeholder for student's response): </label>
                         <textarea rows="5" cols="40" name="options"><?PHP echo $question->options; ?></textarea>            
                         <textarea required rows="5" cols="40" name="autograder"><?PHP echo $question->grader; ?></textarea>
                     </div>
