@@ -369,7 +369,10 @@ li {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding-top: 14px;
+    padding-bottom:16px;
+    margin-left:10px;
+    width:100%;
     text-decoration: none;
 }
 
