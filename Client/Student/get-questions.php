@@ -9,7 +9,7 @@
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
     $answerCtrl = new AnswerController($dbContext);
-    $answers = $answerCtrl->GetAllAnswersFromStudent($_SESSION['user']->username);
+    $answers = $answerCtrl->GetAllAnswersFromStudent($_SESSION['user']->username, $_GET);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -25,17 +25,27 @@
         <?php 
             require_once("../General/student-nav.php");
             echo "<div id=\"wrapper\">";
-            foreach($answers as $answer) {
-                $question = $questionCtrl->GetQuestion($answer['question_id']);
+            if(count($answers) === 0) {
                 echo"<div id='questionbeingviewed'>";
-                echo"<h1 id='questionresponse'>Question Id: " . $answer['question_id'] . "</h1>";   
-                echo"<label class='questionresponselabel'>Question description: $question->description</label>";                
-                echo"<label class='questionresponselabel'>Your answer: " . $answer['answer'] . "</label>";
-                echo"<label class='questionresponselabel'>Actual answer: $question->answer</label>";
-                echo"<label class='questionresponselabel'>Points earned: " . $answer['points_earned'] . "</label>";
-                echo"<label class='questionresponselabel'>Possible points: $question->points</label>";               
-                echo"<label class='questionresponselabel'>Topic keywords: $question->keywords</label>";                
+                echo"<h1 id='questionresponse'>No Question match your search</h1>";   
+                echo"<div id='notfound'>";
+                echo"<a 'href='../Student/view-old-question.php'>Return to search</a>";
+                echo"</div>";
                 echo "</div>";
+            } else {
+                    print_r($answers);
+                foreach($answers as $answer) {
+                    $question = $questionCtrl->GetQuestion($answer['question_id']);
+                    echo"<div id='questionbeingviewed'>";
+                    echo"<h1 id='questionresponse'>Question Id: " . $answer['question_id'] . "</h1>";   
+                    echo"<label class='questionresponselabel'>Question description: $question->description</label>";                
+                    echo"<label class='questionresponselabel'>Your answer: " . $answer['answer'] . "</label>";
+                    echo"<label class='questionresponselabel'>Actual answer: $question->answer</label>";
+                    echo"<label class='questionresponselabel'>Points earned: " . $answer['points_earned'] . "</label>";
+                    echo"<label class='questionresponselabel'>Possible points: $question->points</label>";               
+                    echo"<label class='questionresponselabel'>Topic keywords: $question->keywords</label>";                
+                    echo "</div>";
+                }
             }
             echo "</div>";
         ?>        

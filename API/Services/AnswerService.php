@@ -41,6 +41,28 @@ class AnswerService extends BaseService {
         $params = array("student_id" => $studentId);
         return $this->db->ExecuteQuery($query, $params);
     }
+    
+    public function GetAllAnswersFromStudentWithFilters($studentId,$filters) {
+        $params = array("student_id" => $studentId);
+        $query ="SELECT * FROM answers inner join answers on";
+        $whereClause = "WHERE answers.student_id = ?";
+        while ($filterValue = current($filters)) {
+           if (isset($filterValue)) {
+               $columnName = key($filters);
+               if($columnName === "points" || $columnName === "question_type") {
+                   $whereClause = " ".$whereClause." AND"." questions.".$columnName." = ?"; 
+               } else {
+                   $whereClause = " ".$whereClause." AND"." answers.".$columnName." = ?"; 
+               }
+               $params[key($filters)] = $filterValue;
+            }
+            next($filters);
+        }
+        $query = $query.$whereClause;
+        echo"$query";
+        print_r($params);
+        return $this->db->ExecuteQuery($query, $params);
+    }
 
     public function GetAllAnswersFromQuestion($questionId) {
         $query ="SELECT * FROM answers WHERE question_id = ?";

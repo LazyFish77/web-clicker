@@ -1,7 +1,9 @@
+
 * {
     font-family: sans-serif;
 
 }
+
 body {
     width: 100%;
     height: 100%;
@@ -22,6 +24,67 @@ html {
     width: 100%;
     height: 50px;
 }
+@media screen and (max-width:700px) {
+    .loginheader {
+    background-color: black;
+    color: green;
+    margin: 0px;
+    position: relative;
+    top: 50px;
+    width: 96.8%;
+    height: 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+.loginheader2 {
+    background-color: black;
+    color: green;
+    margin: auto;
+    position: relative;
+    top: 50px;
+    
+    width: 50%;
+    /* width: 375px; */
+    height: 40px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+form {
+    border: 3px black solid;
+    width: 49%;
+    min-height: 150px;
+    position: relative;
+    margin: auto;
+    top: 50px;
+    background-color: lightgray;
+}
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-top: 25px;
+    width: 100%;
+    height: 85px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.footerimage{
+    position: relative;
+    top: 10px;
+    height: 60px;
+    width: 90px
+}
+#footertext{
+    color: green;
+    position: relative;
+    top: 33px;
+}
+}
+@media screen and (min-width: 700px){
+
 
 .loginheader {
     background-color: black;
@@ -161,15 +224,25 @@ li {
     background-color: lightgray;
     margin: auto;
     margin-top: 50px;
-    padding: 00px 10px 10px 10px;
+    /* padding: 00px 0px 0px 10px; */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 #questionresponse {
-    color: black;
+    color: green;
     font-size: 2em;
+    background-color: black;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+    width: 770px;
 }
 .questionresponselabel {
     display: block;
     padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
 }
 #reviewinput1 {
     margin-left: 5px;
@@ -190,6 +263,7 @@ li {
 }
 #mediumform {
     min-height: 200px;
+    width: 96.8%;
 }
 #tallform {
     min-height: 500px;
@@ -390,6 +464,14 @@ li {
 
 .ui-nav-label {
     color: #4CAF50;
+}
+#notfound {
+    text-align: center;
+    margin: auto;
+    font-size: 32px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
 }
 
 /* END UPDATED NAVIGATION UI */
