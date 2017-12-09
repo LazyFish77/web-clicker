@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="description" content="Post question to database; informs user on success">
         <meta name="keywords" content="post, questions">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/login-page.css"; ?>">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <title>Web Clicker</title>
     </head>
     <body>

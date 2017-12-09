@@ -7,6 +7,8 @@
         <meta name="keywords" content="webclicker homepage">
         <meta name="author" content="Tyler Fischer">
         <title>Web Clicker</title>
+        <link rel="stylesheet" href="../Styles/login-page.css">
+        <link rel="stylesheet" href="../Styles/nav-styles.css">
     </head>
     <body>
         <?php

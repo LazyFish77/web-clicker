@@ -1,3 +1,8 @@
+<?PHP 
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
+    $session = new Session();
+?>
 <!DOCTYPE html>
 <html>
   
@@ -8,7 +13,7 @@
     <meta charset="UTF-8">
     <title>Web Clicker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../login-page.css">
+    <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
 </head>
 
 <body>
