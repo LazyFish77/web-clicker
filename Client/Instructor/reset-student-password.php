@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }        
     ?>
 
-    <h1 class="loginheader2">Reset Student's Password</h1>
+    <h1 class="loginheader2">Reset Password</h1>
     <form class="container" action="#" method="post">
         <div>
             <label class="inputkey">Student's Username:</label>
