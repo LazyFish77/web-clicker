@@ -36,7 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="description" content="Activates selected question for students to view">
         <meta name="keywords" content="activate, question">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="../login-page.css">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <script src="countdown.js"></script>
         <title>Web Clicker</title>
     </head>

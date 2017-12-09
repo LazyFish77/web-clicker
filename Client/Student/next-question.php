@@ -11,7 +11,7 @@
     <meta name="author" content="Tyler Fischer">
     <meta charset="UTF-8">
     <title>Web Clicker</title>
-    <link rel="stylesheet" href="../login-page.css">
+    <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
 </head>
 
 <body>

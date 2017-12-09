@@ -25,7 +25,7 @@
         <meta name="description" content="Displays student's score on the current question">
         <meta name="keywords" content="show results">
         <meta name="author" content="Tyler Fischer, Cory Lewis, Walter Woods">
-        <link rel="stylesheet" href="../login-page.css">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <link rel="stylesheet" href="question.css">
         <title>Results</title>
     </head>

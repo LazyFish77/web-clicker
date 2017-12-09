@@ -20,7 +20,7 @@
             otherwise returns message saying could not get question">
         <meta name="keywords" content="show question">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="../login-page.css">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <link rel="stylesheet" href="question.css">
         <title>Get Question</title>
     </head>
@@ -59,7 +59,7 @@
                 echo "</form>";
             } else {
                 echo "<div id='noquestion'>There is no question to view
-                    <a id='returnlink' href='../Student/next-question.html'> click to return</a> </div>";
+                    <a id='returnlink' href='../Student/next-question.php'> click to return</a> </div>";
             }
         ?>
         </div>

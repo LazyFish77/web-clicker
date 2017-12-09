@@ -18,7 +18,7 @@
         <meta name="description" content="Returns a query of questions">
         <meta name="keywords" content="view questions">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="../login-page.css">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <title>Get Question</title>
     </head>
     <body>        

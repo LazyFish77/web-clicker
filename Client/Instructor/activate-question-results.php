@@ -10,7 +10,7 @@
         <meta name="description" content="Shows results from student answers">
         <meta name="keywords" content="activate, question, results">
         <meta name="author" content="Tyler Fischer">
-        <link rel="stylesheet" href="http://<?php echo $_SERVER['SERVER_NAME']. WEB_ROOT; ?>/Client/login-page.css">
+        <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <title>Web Clicker</title>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>

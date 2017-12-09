@@ -350,3 +350,46 @@ li {
 ::-webkit-scrollbar { 
     display: none; 
 }
+
+
+/* UPDATED NAVIGATION UI */
+.ui-nav-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.ui-nav-left {
+    float: left;
+}
+
+.ui-nav-li-a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding-top: 14px;
+    padding-bottom:16px;
+    margin-left:10px;
+    width:100%;
+    text-decoration: none;
+}
+
+.ui-nav-li-a:hover:not(.ui-nav-active) {
+    background-color: #111;
+}
+
+.ui-nav-active {
+    background-color: #4CAF50;
+}
+
+.ui-nav-right {
+    float: right;
+}
+
+.ui-nav-label {
+    color: #4CAF50;
+}
+
+/* END UPDATED NAVIGATION UI */
