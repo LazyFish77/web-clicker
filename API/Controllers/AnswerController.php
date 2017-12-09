@@ -39,6 +39,11 @@ class AnswerController extends BaseController {
      */
     public function GetAnswer($question_id, $student_id) {
         $result = $this->answerService->Select($question_id, $student_id);
+
+        if(count($result) == 0) {
+            return null;
+        }
+
         $a = new Answer();
         $a->Deserialize($result[0]);
         return $a;
