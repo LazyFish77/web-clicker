@@ -114,11 +114,11 @@ class UserController extends BaseController {
 
             $user = new User();
             $user->Deserialize($record[0]);
-            print_r($user);
+
             $hash = hash(self::HASH_ALGORITHM, implode($pass));
             $user->password = $hash;
             $result = $this->userService->UpdatePassword($user);
-            print_r($result);
+
             if($result == 1) {
                 return implode($pass);
             } else {
