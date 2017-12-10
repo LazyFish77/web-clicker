@@ -15,16 +15,16 @@
     $keywords = null;
     $type = null;
     $section = null;
-    if(isset($_GET['points'])) {
+    if(isset($_GET['points']) && !empty($_GET['points'])) {
         $points = $_GET['points'];
     }
-    if(isset($_GET['topic_keywords'])) {
+    if(isset($_GET['topic_keywords']) && !empty($_GET['topic_keywords'])) {
         $keywords = $_GET['topic_keywords'];
     }
-    if(isset($_GET['question_type'])) {
+    if(isset($_GET['question_type']) && !empty($_GET['question_type'])) {
         $type = $_GET['question_type'];
     }
-    if(isset($_GET['section'])) {
+    if(isset($_GET['section']) && !empty($_GET['section'])) {
         $section = $_GET['section'];
     }
     $questions = $questionCtrl->Search($points, $keywords, $type, $section);
