@@ -53,6 +53,12 @@
             } else {
                 foreach($questions as $question) {
                     $answer = $answerCtrl->GetAnswer($question['id'], $_SESSION['user']->username);
+                    if($answer === null) {
+                        $answer = new Answer();
+                        $answer->question_id = $question['id'];
+                        $answer->answer = 'No Record';
+                        $answer->points_earned = 0;
+                    }
                     echo"<div id='questionbeingviewed'>";
                     echo"<h1 id='questionresponse'>Question Id: " . $answer->question_id . "</h1>";   
                     echo"<label class='questionresponselabel'>Question description:". $question['description']."</label>";                
