@@ -47,12 +47,18 @@
                 echo"<div id='questionbeingviewed'>";
                 echo"<h1 id='questionresponse'>No Question match your search</h1>";   
                 echo"<div id='notfound'>";
-                echo"<a 'href='../Student/view-old-question.php'>Return to search</a>";
+                echo"<a href='../Student/view-old-question.php'>Return to search</a>";
                 echo"</div>";
                 echo "</div>";
             } else {
                 foreach($questions as $question) {
                     $answer = $answerCtrl->GetAnswer($question['id'], $_SESSION['user']->username);
+                    if($answer === null) {
+                        $answer = new Answer();
+                        $answer->question_id = $question['id'];
+                        $answer->answer = 'No Record';
+                        $answer->points_earned = 0;
+                    }
                     echo"<div id='questionbeingviewed'>";
                     echo"<h1 id='questionresponse'>Question Id: " . $answer->question_id . "</h1>";   
                     echo"<label class='questionresponselabel'>Question description:". $question['description']."</label>";                
