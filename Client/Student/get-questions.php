@@ -9,7 +9,7 @@
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
     $answerCtrl = new AnswerController($dbContext);
-    $answers = $answerCtrl->GetAllAnswersFromStudent($_SESSION['user']->username, $_GET);
+    $answers = $answerCtrl->GetAllAnswersFromStudentFiltered($_SESSION['user']->username, $_GET);
 ?>
 <!DOCTYPE HTML>
 <html>
