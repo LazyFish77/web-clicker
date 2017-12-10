@@ -1,5 +1,4 @@
 <?php 
- ini_set('display_errors', 1);
     require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/AnswerController.php");
@@ -28,7 +27,8 @@
         <title>Web Clicker</title>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>
-    <body>        
+    <body>
+
         <?php require_once("../General/instructor-nav.php") ?>
         
         <div id="studentstats">
