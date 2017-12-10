@@ -18,7 +18,6 @@ class QuestionController extends BaseController {
     function __construct(Database $context) {
         parent::__construct();
         $this->questionService = new QuestionService($context);
-        $this->answerService = new AnswerService($context);
     }
 
     /**
