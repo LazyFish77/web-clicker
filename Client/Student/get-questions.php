@@ -47,7 +47,7 @@
                 echo"<div id='questionbeingviewed'>";
                 echo"<h1 id='questionresponse'>No Question match your search</h1>";   
                 echo"<div id='notfound'>";
-                echo"<a 'href='../Student/view-old-question.php'>Return to search</a>";
+                echo"<a href='../Student/view-old-question.php'>Return to search</a>";
                 echo"</div>";
                 echo "</div>";
             } else {
