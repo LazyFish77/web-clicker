@@ -334,11 +334,11 @@ li {
     width:174px;
     margin-left: 23px;
 }
-#mediumform {
-    /* min-height: 200px; */
-    /* width: 50%; */
-    /* margin: 0px; */
-}
+/* #mediumform {
+     min-height: 200px; 
+     width: 50%; 
+    margin: 0px; 
+} */
 #tallform {
     margin: auto;
     min-height: 498px;
