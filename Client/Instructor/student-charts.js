@@ -12,14 +12,14 @@ function getCharts(info, questionCount) {
             var h = e[0].points_earned;
             ctx.fillRect(currx, canvas.height - h * 26, width, h * 26);
         } else {
-            var h = 0;
+            h = 0;
             ctx.fillRect(currx, canvas.height - h * 26, width, h * 26);
         }
         currx += width + 10;
-    };
+    }
     assignYValues(info);
     assignXValues(info, questionCount);
-};
+}
 function assignXValues(info, questionCount) {
     document.getElementById("xaxis").innerHTML = "";
     for (var i = 1; i < questionCount + 1; i++) {
@@ -48,7 +48,7 @@ function assignYValues(info) {
 }
 
 function searchByStudent() {
-    clearMultipleCharts()
+    clearMultipleCharts();
     document.getElementById("show-chart").style.display = "block";
     var student = document.getElementById("student");
     var request = new XMLHttpRequest();
@@ -62,7 +62,7 @@ function searchByStudent() {
             var totalQuestion = response.pop();
             getCharts(response, totalQuestion);
         }
-    }
+    };
     request.open("GET", "./get-scores.php");
     request.setRequestHeader("search-by-student", studentName);
     request.send();
@@ -88,7 +88,7 @@ function showAllStudents() {
                 i++;
             }
         }
-    }
+    };
     request.open("GET", "./get-scores.php");
     request.setRequestHeader("search-by-student", "false");
     request.send();
@@ -158,11 +158,11 @@ function showMultipleCharts(student, totalQuestions, index, studentName) {
             var h = e[0].points_earned;
             ctx.fillRect(currx, canvas.height - h * 13, width, h * 13);
         } else {
-            var h = 0;
+            h = 0;
             ctx.fillRect(currx, canvas.height - h * 10, width, h * 10);
         }
         currx += width + 10;
-    };
+    }
 }
 
 function groupBy(arr, property) {

@@ -334,15 +334,16 @@ li {
     width:174px;
     margin-left: 23px;
 }
-#mediumform {
-    /* min-height: 200px; */
-    /* width: 50%; */
-    /* margin: 0px; */
-}
+/* #mediumform {
+     min-height: 200px; 
+     width: 50%; 
+    margin: 0px; 
+} */
 #tallform {
     margin: auto;
-    min-height: 750px;
-    /* width: 50%; */
+    min-height: 498px;
+    max-height: 750px;
+    width: 100%;
     
 }
 #tallerform {
@@ -577,6 +578,10 @@ li {
     flex-direction: column;
 
 }
+
+
+
+}
 #chart-container {
     margin: auto;
     display: flex;
@@ -600,12 +605,14 @@ li {
     width:90px;
     bottom: 0;
     left: 50;
+    color: black;
 }
 .yaxis {
     position: absolute;
     width:90px;
     bottom: 0;
     left: 50;
+    color: black;
 }
 .points {
     color: green;
@@ -616,6 +623,7 @@ li {
     height: 30px;
     padding-left: 100px;
     background-color: white;
+    color: black;
 }
 .xaxis {
     margin: auto;
@@ -623,6 +631,7 @@ li {
     height: 30px;
     padding-left: 100px;
     background-color: white;
+    color: black;
 }
 #firstx {
     margin-left: 30px;
@@ -651,17 +660,43 @@ canvas {
 }
 #chartbox1 {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 15px;
     max-height: 600px;
     overflow-y: scroll;
 }
 .show-student-name {
     text-align: center;
-    background-color: white;
+    color: white;
+    /* background-color: white; */
+    /* flex: 0 50% */
+
 }
-
-
+#answer-chart-xaxis {
+    background-color: white;
+    color: black;
+    display: block;
+}
+#answer-chart-yaxis{
+    height: 400px;
+    color: black;
+    position: relative;
+}
+#answer-chart-container {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 600px;
+    margin: auto;
+}
+.yaxis-answer {
+    position: absolute;
+    bottom: 0;
+}
+#container-for-answer-chart-thingy {
+    position: relative;
 }
 
 /* END UPDATED NAVIGATION UI */

@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <form id='tallform' class='container' action='../Instructor/submit-created-question.php' method='POST'>
                     <div>
                         <label>Section number: </label>
-                        <input required id='createinput4' type='text' name='sectionnumber' step="0.01" value='<?PHP echo $question->section; ?>'/>             
+                        <input required id='createinput4' type='text' name='sectionnumber' value='<?PHP echo $question->section; ?>'/>             
                     </div>
                     <div>
                         <label class="question">Question statement: </label>

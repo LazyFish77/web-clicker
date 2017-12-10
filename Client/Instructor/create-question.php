@@ -19,11 +19,11 @@
     <?php require_once("../General/instructor-nav.php") ?>
     <div class="flexbox">
         <div class="flexchild">
-            <h1 class="loginheader2">Add Question</h1>
+            <h1 class="loginheader">Add Question</h1>
             <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>
                     <label>Section number: </label>
-                    <input required id="createinput4" type="number" name="sectionnumber" step="0.01"/>
+                    <input required id="createinput4" type="text" name="sectionnumber" />
                 </div>
                 <div>
                     <label class="question">Question statement: </label>
