@@ -30,12 +30,12 @@
 ?>
 <div>
     <ul class="ui-nav-ul">
-        <li class="ui-nav-left ui-nav-label">Web Clicker</li>
-        <li class="ui-nav-left"><a class="ui-nav-li-a <?PHP echo $isQuestionsActive; ?>" href="../Instructor/create-question.php">Questions</a></li>
-        <li class="ui-nav-left"><a class="ui-nav-li-a <?PHP echo $isActivateActive; ?>" href="../Instructor/display-question.php">Activiate Question</a></li>
-        <li class="ui-nav-left"><a class="ui-nav-li-a <?PHP echo $isScoresActive; ?>" href="../Instructor/scores.php">Scores</a></li>
-        <li class="ui-nav-left"><a class="ui-nav-li-a <?PHP echo $isChangePassActive; ?>" href="../General/change-password.php">Change Password</a></li>
-        <li class="ui-nav-left"><a class="ui-nav-li-a <?PHP echo $isResetPassActive; ?>" href="../Instructor/reset-student-password.php">Reset Student Password</a></li>
+        <li class="ui-nav-left ui-nav-label"> Web Clicker</li>
+        <li class="ui-nav-left"><a class="ui-nav-li-a ui-nav-left<?PHP echo $isQuestionsActive; ?>" href="../Instructor/create-question.php">Questions</a></li>
+        <li class="ui-nav-left"><a class="ui-nav-li-a ui-nav-left<?PHP echo $isActivateActive; ?>" href="../Instructor/display-question.php">Activiate Question</a></li>
+        <li class="ui-nav-left"><a class="ui-nav-li-a ui-nav-left <?PHP echo $isScoresActive; ?>" href="../Instructor/scores.php">Scores</a></li>
+        <li class="ui-nav-left"><a class="ui-nav-li-a ui-nav-left <?PHP echo $isChangePassActive; ?>" href="../General/change-password.php">Change Password</a></li>
+        <li class="ui-nav-left"><a class="ui-nav-li-a ui-nav-left <?PHP echo $isResetPassActive; ?>" href="../Instructor/reset-student-password.php">Reset Student Password</a></li>
         <li class="ui-nav-right"><a class="ui-nav-li-a ui-nav-right" href="../logout.php">Log out</a></li>
     </ul>
 </div>

@@ -16,19 +16,21 @@
 
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
-    <div class="flexbox">
-        <div class="flexchild">
-            <h1 class="loginheader">Activate Question</h1>
-            <form id="mediumform" class="container" action="activate-question.php" method="POST">
-                <div>
-                    <label>Question id: </label>
-                    <input id="activateinput1" type="number" name="questionid" />
-                </div>
-                <input type="submit" />
-                <input type="reset" />
-            </form>
-        </div>
-    </div>
+    <!-- <div class="flexbox"> -->
+        <!-- <div class="flexchild"> -->
+            <div id="activate-question-container">
+                <h1 class="loginheader2">Activate Question</h1>
+                <form id="mediumform" class="container" action="activate-question.php" method="POST">
+                    <div>
+                        <label>Question id: </label>
+                        <input id="activateinput1" type="number" name="questionid" />
+                    </div>
+                    <input type="submit" />
+                    <input type="reset" />
+                </form>
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
     <?php require_once('../General/footer.php')?>
 </body>
 
