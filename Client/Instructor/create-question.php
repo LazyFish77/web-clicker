@@ -23,7 +23,7 @@
             <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>
                     <label>Section number: </label>
-                    <input required id="createinput4" type="number" name="sectionnumber" step="0.01"/>
+                    <input required id="createinput4" type="text" name="sectionnumber" />
                 </div>
                 <div>
                     <label class="question">Question statement: </label>
