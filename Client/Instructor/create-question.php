@@ -19,7 +19,7 @@
     <?php require_once("../General/instructor-nav.php") ?>
     <div class="flexbox">
         <div class="flexchild">
-            <h1 class="loginheader2">Add Question</h1>
+            <h1 class="loginheader">Add Question</h1>
             <form id="tallform" class="container" action="./submit-created-question.php" method="POST">
                 <div>
                     <label>Section number: </label>
