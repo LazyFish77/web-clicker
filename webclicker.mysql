@@ -1,0 +1,134 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.15.8
+-- https://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Dec 10, 2017 at 11:39 PM
+-- Server version: 5.5.50-MariaDB
+-- PHP Version: 5.4.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `team2`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE IF NOT EXISTS `answers` (
+  `question_id` int(11) NOT NULL,
+  `student_id` varchar(20) NOT NULL,
+  `answer` varchar(255) NOT NULL,
+  `points_earned` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE IF NOT EXISTS `questions` (
+  `id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `question_type` tinyint(4) NOT NULL,
+  `question` text NOT NULL,
+  `options` varchar(512) DEFAULT NULL,
+  `answer` varchar(30) NOT NULL,
+  `points` tinyint(4) NOT NULL,
+  `description` varchar(80) DEFAULT NULL,
+  `grader` text NOT NULL,
+  `section` varchar(6) DEFAULT NULL,
+  `keywords` varchar(30) NOT NULL,
+  `start_timestamp` datetime NOT NULL,
+  `end_timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `status`, `question_type`, `question`, `options`, `answer`, `points`, `description`, `grader`, `section`, `keywords`, `start_timestamp`, `end_timestamp`) VALUES
+(1, 0, 2, 'The DNS was created so users wouldn''t have to remember a bunch of IP addresses.', 'True || False', 'a', 2, 'The purpose of the DNS', 'if ($guess === ''a'') { return 2; } else { return 1; }', '1.2.2', 'dns, ip', '2017-12-10 16:45:30', '2017-12-10 16:45:30'),
+(2, 1, 0, 'What is the syntax for using the &lt;abbr&gt; tag?', '&lt;abbr title="Abbreviation"&gt;Text to abbreviate&lt;/abbr&gt; || &lt;abbr title="Text to abbreviate"&gt;Abbreviation&lt;/abbr&gt; || &lt;abbr value="Text to abbreviate"&gt;Abbreviation&lt;/abbr&gt; || &lt;abbr value="Abbreviation"&gt;Text to abbreviate&lt;/abbr&gt;', 'b', 2, 'Syntax of abbr tag', 'if ($guess === ''b'') { return 2; } else { return 1; }\n', '2.2.5', 'abbr, abbreviation', '2017-12-10 16:51:45', '2017-12-10 16:51:45'),
+(3, 0, 0, 'Which of these will produce the exact same color in CSS as the keyword ''red'' (select all that apply)?', '#AD0426 || rgb(200, 75, 75) || #FF0000 || crimson || rgb(255, 0, 0)', 'ce', 3, 'Simple color recognition', 'if ($guess === ''ce'') { return 3; } else if (strpos($guess, ''c'') !== false) { return 2; } else if (strpos($guess, ''e'') !== false) { return 2; } else { return 1; }', '3.1.4', 'css, color', '2017-12-10 16:57:45', '2017-12-10 16:57:45'),
+(4, 0, 1, 'What is the name of the border property that merges a table''s double border into one?', '', 'border-collapse', 3, 'Name of a border property', '$guess = strtolower($guess);\r\nif ($guess === ''border-collapse'') { return 3; } else if (strpos($guess, ''collapse'')) { return 2; } else if (strpos($guess, ''border'')) { return 2; } else { return 1; }', '4.2.1', 'table, border', '2017-12-10 17:04:37', '2017-12-10 17:04:37'),
+(5, 0, 2, 'In PHP, there is no difference between using single quotes or double quotes when embedding variables inside a string.', 'True || False', 'b', 2, 'Single vs. double quotes in PHP', 'if ($guess === ''b'') { return 2; } else { return 1; }', '5.2.5', 'quotes, variables', '2017-12-10 17:06:51', '2017-12-10 17:06:51'),
+(6, 0, 0, 'What are the different ways to add clickable text to a radio button or checkbox (select all that apply)?', '&lt;label for="bold"&gt;Bold&lt;/label&gt; &lt;input id="bold" type="checkbox".../&gt; || &lt;input type="checkbox" label="Bold".../&gt; || &lt;input type="checkbox" label="Bold" clickable="true".../&gt; || &lt;label&gt;&lt;input type="checkbox".../&gt;Bold&lt;/label&gt; || &lt;input type="checkbox" &lt;label&gt;Bold&lt;/label&gt;.../&gt;', 'ad', 3, 'Add clickable text to checkboxes/radio buttons', 'if ($guess === ''ad'') { return 3; } else if (strpos($guess, ''a'') !== false) { return 2; } else if (strpos($guess, ''d'') !== false) { return 2; } else { return 1; }', '6.2.3', 'checkbox, radio button', '2017-12-10 17:15:50', '2017-12-10 17:15:50'),
+(7, 0, 0, 'As a web designer, where should you place the most important content on your page?', 'At the top || At the bottom || Somewhere in the middle || On a sidebar || As hidden text', 'a', 2, 'Content placement on a page', 'if ($guess === ''a'') { return 2; } else { return 1; }', '7.1.2', 'content, web design', '2017-12-10 17:19:00', '2017-12-10 17:19:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `num_pw_changes` tinyint(4) NOT NULL DEFAULT '0',
+  `email` varchar(30) NOT NULL,
+  `type` tinyint(4) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `last_logout` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`, `num_pw_changes`, `email`, `type`, `last_login`, `last_logout`) VALUES
+('flutesnoot', '5c441e4c105a50a9f5d9073e6a1bec96917e3971e741dce154aa1c2ccbb4a21b', 1, 'flute@uwosh.edu', 1, NULL, NULL),
+('mcglitcherton', '554e520d282908192c3babdfb0f0bcadb5534dd2f25561245a4df8225c86d855', 0, 'merg@bob.com', 0, NULL, NULL),
+('packet', 'a54b67bf204c162ba82ac5a67e1d7df4e0456f481598428b09cf6b99cc47edbd', 0, 'merg@berg.com', 0, NULL, NULL),
+('student', '3852a45f41a6bf994d742e3d74df67deaf36d80438b8f506a0ccb04a1dbe6dbb', 1, 'student@school.edu', 0, NULL, NULL),
+('test', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 0, 'test@example.com', 1, '2017-11-13 16:02:38', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
