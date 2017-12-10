@@ -54,13 +54,17 @@ class AnswerController extends BaseController {
         return $result;
     }
 
-    public function GetAllAnswersFromStudent($studentId, $filters) {
+    public function GetAllAnswersFromStudentFiltered($studentId, $filters) {
         if(count($filters) === 0){
             $result = $this->answerService->GetAllAnswersFromStudent($studentId);
         } else {
             $result = $this->answerService->GetAllAnswersFromStudentWithFilters($studentId,$filters);
             
         }
+        return $result;
+    }
+    public function GetAllAnswersFromStudent($studentId) {
+        $result = $this->answerService->GetAllAnswersFromStudent($studentId);
         return $result;
     }
 
