@@ -144,6 +144,22 @@ class QuestionController extends BaseController {
         return $payload;
     }
 
+    public function Search($points, $keywords, $type, $section) {
+        if($points === null && $keywords === null && $type === null && $section === null) {
+            return null;
+        }
+        
+        $questions = $this->questionService->Search($points, $keywords, $type, $section);
+        $allowed = array();
+
+        for($x = 0; $x < count($questions); $x++) {
+            if($this->questionService->HasQuestionBeenAsked($questions[$x]['id'])) {
+                array_push($allowed, $questions[$x]);
+            }
+        }
+        return $allowed;
+    }
+
     /**
      * @Override
      * Cleans up any resources used by this controller

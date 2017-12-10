@@ -116,6 +116,50 @@ class QuestionService extends BaseService {
         return $result[0]['MAX(id)'] + 1;
     }
 
+    public function Search($points, $keywords, $type, $section) {
+        $query = "SELECT * FROM questions WHERE ";
+        
+        $params = array();
+        $queryOptions = array();
+        if($points !== null) {
+            array_push($queryOptions, "points = ?");
+            $params = array_merge($params, array($points));
+        }
+
+        if($keywords !== null) {
+            $words = explode(" ", $keywords);
+            $keywordArray = array();
+            for($x = 0; $x < count($words); $x++) {
+                array_push($keywordArray, "keywords LIKE ?");
+                $params = array_merge($params, array("%".$words[$x]."%"));
+            }
+            $keywordParam = join(" OR ", $keywordArray);
+            array_push($queryOptions, "(".$keywordParam.")");
+        }
+
+        if($type !== null) {
+            array_push($queryOptions, "question_type = ?");
+            $params = array_merge($params, array($type));
+        }
+
+        if($section !== null) {
+            array_push($queryOptions, "section = ?");
+            $params = array_merge($params, array($section));
+        }
+
+        $query .= join(" AND ", $queryOptions);
+
+        return $this->db->ExecuteQuery($query, $params);
+    }
+
+    public function HasQuestionBeenAsked($questionId) {
+        $query = "SELECT * FROM answers WHERE question_id = ?";
+        $params = array(
+            $questionId
+        );
+        return count($this->db->ExecuteQuery($query, $params)) > 0;
+    }
+
 }
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+ ini_set('display_errors', 1);
     require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
@@ -9,7 +10,24 @@
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
     $answerCtrl = new AnswerController($dbContext);
-    $answers = $answerCtrl->GetAllAnswersFromStudentFiltered($_SESSION['user']->username, $_GET);
+
+    $points = null;
+    $keywords = null;
+    $type = null;
+    $section = null;
+    if(isset($_GET['points']) && !empty($_GET['points'])) {
+        $points = $_GET['points'];
+    }
+    if(isset($_GET['topic_keywords']) && !empty($_GET['topic_keywords'])) {
+        $keywords = $_GET['topic_keywords'];
+    }
+    if(isset($_GET['question_type']) && !empty($_GET['question_type'])) {
+        $type = $_GET['question_type'];
+    }
+    if(isset($_GET['section']) && !empty($_GET['section'])) {
+        $section = $_GET['section'];
+    }
+    $questions = $questionCtrl->Search($points, $keywords, $type, $section);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,11 +39,11 @@
         <link rel="stylesheet" href="http://<?PHP echo $_SERVER['SERVER_NAME']. WEB_ROOT . "/Client/Styles/default-theme.css"; ?>">
         <title>Get Question</title>
     </head>
-    <body>        
+    <body>
         <?php 
             require_once("../General/student-nav.php");
             echo "<div id=\"wrapper\">";
-            if(count($answers) === 0) {
+            if(count($questions) === 0) {
                 echo"<div id='questionbeingviewed'>";
                 echo"<h1 id='questionresponse'>No Question match your search</h1>";   
                 echo"<div id='notfound'>";
@@ -33,17 +51,16 @@
                 echo"</div>";
                 echo "</div>";
             } else {
-                    print_r($answers);
-                foreach($answers as $answer) {
-                    $question = $questionCtrl->GetQuestion($answer['question_id']);
+                foreach($questions as $question) {
+                    $answer = $answerCtrl->GetAnswer($question['id'], $_SESSION['user']->username);
                     echo"<div id='questionbeingviewed'>";
-                    echo"<h1 id='questionresponse'>Question Id: " . $answer['question_id'] . "</h1>";   
-                    echo"<label class='questionresponselabel'>Question description: $question->description</label>";                
-                    echo"<label class='questionresponselabel'>Your answer: " . $answer['answer'] . "</label>";
-                    echo"<label class='questionresponselabel'>Actual answer: $question->answer</label>";
-                    echo"<label class='questionresponselabel'>Points earned: " . $answer['points_earned'] . "</label>";
-                    echo"<label class='questionresponselabel'>Possible points: $question->points</label>";               
-                    echo"<label class='questionresponselabel'>Topic keywords: $question->keywords</label>";                
+                    echo"<h1 id='questionresponse'>Question Id: " . $answer->question_id . "</h1>";   
+                    echo"<label class='questionresponselabel'>Question description:". $question['description']."</label>";                
+                    echo"<label class='questionresponselabel'>Your answer: " . $answer->answer . "</label>";
+                    echo"<label class='questionresponselabel'>Actual answer: ".$question['answer']."</label>";
+                    echo"<label class='questionresponselabel'>Points earned: " . $answer->points_earned . "</label>";
+                    echo"<label class='questionresponselabel'>Possible points: ".$question['points']."</label>";               
+                    echo"<label class='questionresponselabel'>Topic keywords: ".$question['keywords']."</label>";                
                     echo "</div>";
                 }
             }
