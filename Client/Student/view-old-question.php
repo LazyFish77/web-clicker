@@ -39,7 +39,7 @@
             </div>
             <div>
                 <label>Section number: </label>
-                <input id="reviewinput3" type="number" name="section" />
+                <input id="reviewinput3" type="number" name="section" step="0.01" />
             </div>
             <input type="submit" />
             <input type="reset" />

@@ -14,16 +14,22 @@
         header('Location: next-question.php');
     } else {
         $questions = $questionCtrl->GetActiveQuestions();
-        $question = $questions[0];
+        if ($questions) {
+            $question = $questions[0];
+        }
 
         $answerCtrl = new AnswerController($dbContext);
 
         $studentIdentity = $session->GetUser();
-        $studentAnswer = $answerCtrl->GetAnswer($question->id, $studentIdentity->username);
+        if (isset($question)) {
+            $studentAnswer = $answerCtrl->GetAnswer($question->id, $studentIdentity->username);
+        }
 
         // user has already answered this question
-        if($studentAnswer !== null) {
-            header('Location: next-question.php');
+        if(isset($studentAnswer)) {
+            if($studentAnswer !== null) {
+                header('Location: next-question.php');
+            }
         }
        
     }
@@ -45,7 +51,7 @@
         <?php
             require_once("../General/student-nav.php");             
 
-            if ($question) {
+            if (isset($question)) {
                 echo "<form id=\"questionform\" action=\"./process-answer.php\" method=\"post\">";
                     echo "<h1>Question $question->id</h1>";
                     echo "<pre>$question->question</pre>";
