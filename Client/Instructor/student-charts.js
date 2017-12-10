@@ -52,6 +52,7 @@ function showAllStudents() {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status === 200) {
             clearChartElements();
+            console.log(request.responseText);
             var response = JSON.parse(request.responseText);
             var students = groupBy(response, "student_id");
             students = toArray(students)
