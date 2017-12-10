@@ -24,9 +24,25 @@ $session = new Session();
             <input id="student" type="text" />
         </div>
             <button class="scorebutton" onclick="showAllStudents()">show all student scores</button>
+        </div>  
+        <div id="chartbox1">
+
         </div>
-        <div id="chartbox">
-        </div>
+        
+
+            <div id="show-chart"> 
+                <div id="chart-container">
+                    <div id="total-points-earned">
+                        <div id="yaxis"></div>
+                    </div>
+                    <canvas id="mycanvas" height="400px" width="400px"></canvas>
+                </div>
+                <div id="xaxis">
+                </div>
+            </div>
+            <div id="show-all-charts">
+                
+            </div>
         <?php require_once(realpath(dirname(__FILE__)) . '/../General/footer.php')?>
     </body>
 </html>
