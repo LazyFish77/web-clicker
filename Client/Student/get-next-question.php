@@ -3,6 +3,8 @@
     require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/QuestionController.php");
+    require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/AnswerController.php");
+
     $session = new Session();
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
@@ -10,6 +12,20 @@
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         // Redirect to next-question.html (user tried to navigate to this page directly)
         header('Location: next-question.php');
+    } else {
+        $questions = $questionCtrl->GetActiveQuestions();
+        $question = $questions[0];
+
+        $answerCtrl = new AnswerController($dbContext);
+
+        $studentIdentity = $session->GetUser();
+        $studentAnswer = $answerCtrl->GetAnswer($question->id, $studentIdentity->username);
+
+        // user has already answered this question
+        if($studentAnswer !== null) {
+            header('Location: next-question.php');
+        }
+       
     }
 ?>
 <!DOCTYPE HTML>
@@ -28,9 +44,6 @@
         <div>
         <?php
             require_once("../General/student-nav.php");             
-            $questions = $questionCtrl->GetActiveQuestions();
-            $questionCtrl->Dispose();
-            $question = $questions[0];
 
             if ($question) {
                 echo "<form id=\"questionform\" action=\"./process-answer.php\" method=\"post\">";
@@ -68,3 +81,6 @@
         </div>
     </body>
 </html>
+<?PHP
+    $questionCtrl->Dispose();
+?>
