@@ -1,6 +1,7 @@
 function getCharts(info, questionCount) {
     var canvas = document.getElementById('mycanvas');
     var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 400, 400);
     var value = [];
     var width = 50;
     var currx = 30;
