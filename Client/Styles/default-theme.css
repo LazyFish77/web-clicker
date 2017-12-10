@@ -341,8 +341,9 @@ li {
 }
 #tallform {
     margin: auto;
-    min-height: 750px;
-    /* width: 50%; */
+    min-height: 498px;
+    max-height: 750px;
+    width: 100%;
     
 }
 #tallerform {
