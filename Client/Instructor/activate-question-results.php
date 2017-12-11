@@ -28,21 +28,7 @@
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </head>
     <body>
-
         <?php require_once("../General/instructor-nav.php") ?>
-        <?php 
-            require_once("../../API/Controllers/QuestionController.php");
-            require_once("../../API/Controllers/AnswerController.php");
-            require_once("../../API/Database/Database.php");
-            $db = new Database();
-            $questionController = new QuestionController($db);
-            $answerController = new AnswerController($db);
-            $question = $questionController->GetActiveQuestions()[0];
-            $getStudentResponses = $answerController->GetAllAnswersFromQuestion($question->id);
-            $getStudentResponses = json_encode($getStudentResponses);
-            $question = json_encode($question);
-            $questionController->DeactivateAllQuestions();
-        ?>
     <div id="studentstats">
         <div>
             <?php echo"$getStudentResponses"?>
