@@ -7,8 +7,6 @@
     define("QUESTION_ACTIVE", 1);
     define("QUESTION_INACTIVE", 0);
 
-    // define("WEB_ROOT", "/students/lewisc24/web-clicker"); // Cory's Web Root
-
-    // define("WEB_ROOT", "/web-clicker"); // Walter's Web Root
-    define("WEB_ROOT", "/students/team2/web-clicker");
+    // Dr. Furcy, the below variable needs to be updated, web-clicker must stay, but the rest is changeable.
+    define("WEB_ROOT", "/students/team2/web-clicker"); 
 ?>
