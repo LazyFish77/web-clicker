@@ -1,7 +1,7 @@
 function getCharts(info, questionCount) {
     var canvas = document.getElementById('mycanvas');
     var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, 400, 400);
+    ctx.clearRect(0, 0, 800, 400);
     var value = [];
     var width = 50;
     var currx = 30;
@@ -29,7 +29,7 @@ function assignXValues(info, questionCount) {
         } else {
             span.classList = "xvalues";
         }
-        span.innerHTML = "day " + i;
+        span.innerHTML = "question " + i;
         document.getElementById("xaxis").appendChild(span);
     }
 }
@@ -97,12 +97,9 @@ function assignAllXValues(student, questionCount, xaxis) {
     xaxis.innerHTML = "";
     for (var i = 1; i < questionCount + 1; i++) {
         var span = document.createElement("span");
-        if (i == 1) {
-            span.id = "firstx";
-        } else {
+            // span.id = "firstx";
             span.classList = "xvalues";
-        }
-        span.innerHTML = "day " + i;
+        span.innerHTML = "q " + i;
         xaxis.appendChild(span);
     }
 
@@ -141,7 +138,7 @@ function showMultipleCharts(student, totalQuestions, index, studentName) {
     yaxis.classList = "yaxis";
     assignAllYValues(student, yaxis);
     canvas.id = "graph" + index;
-    canvas.style.width = "400px";
+    canvas.style.width = "600px";
     yaxisContainer.appendChild(yaxis);
     smallerContainer.appendChild(yaxisContainer);
     smallerContainer.appendChild(canvas);
@@ -149,14 +146,14 @@ function showMultipleCharts(student, totalQuestions, index, studentName) {
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, 400, 400);
     var value = [];
-    var width = 50;
+    var width = 40;
     var currx = 60;
     ctx.fillStyle = "green";
     for (var i = 1; i < totalQuestions + 1; i++) {
         var e = student.filter(element => element.question_id == i);
         if (e.length > 0) {
             var h = e[0].points_earned;
-            ctx.fillRect(currx, canvas.height - h * 13, width, h * 13);
+            ctx.fillRect(currx, canvas.height - h * 10, width, h * 10);
         } else {
             h = 0;
             ctx.fillRect(currx, canvas.height - h * 10, width, h * 10);

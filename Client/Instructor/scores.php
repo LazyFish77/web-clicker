@@ -19,10 +19,6 @@ $session = new Session();
     <body>   
         <?php require_once(realpath(dirname(__FILE__)) . "/../General/instructor-nav.php") ?>
         <div id="scorebody">
-            <button class="scorebutton" onclick="searchByStudent()">search by student</button>
-        <div id="studentcontainer">
-            <input id="student" type="text" />
-        </div>
             <button class="scorebutton" onclick="showAllStudents()">show all student scores</button>
         </div>  
         <div id="chartbox1">
@@ -35,7 +31,7 @@ $session = new Session();
                     <div id="total-points-earned">
                         <div id="yaxis"></div>
                     </div>
-                    <canvas id="mycanvas" height="400px" width="400px"></canvas>
+                    <canvas id="mycanvas" height="400px" width="800px"></canvas>
                 </div>
                 <div id="xaxis">
                 </div>
