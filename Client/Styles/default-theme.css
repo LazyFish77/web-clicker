@@ -54,7 +54,6 @@ html {
     top: 50px;
     
     width: 50%;
-    /* width: 375px; */
     height: 60px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -149,7 +148,6 @@ form {
 }
 #mediumform {
     width: 49%;
-    /* width: 375px; */
 }
 textarea {
     width: 45%;
@@ -297,7 +295,6 @@ li {
     background-color: lightgray;
     margin: auto;
     margin-top: 50px;
-    /* padding: 00px 0px 0px 10px; */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -334,11 +331,6 @@ li {
     width:174px;
     margin-left: 23px;
 }
-/* #mediumform {
-     min-height: 200px; 
-     width: 50%; 
-    margin: 0px; 
-} */
 #tallform {
     margin: auto;
     min-height: 498px;
@@ -464,7 +456,6 @@ li {
     background-color: rgba(211, 211, 211, 0.562);
     margin: auto;
     width: 80%;
-    /* display: flex; */
     flex-wrap: wrap;
     overflow: scroll;
     max-height: 65%;
@@ -523,28 +514,13 @@ li {
     font-size: 90%;
     
 }
-/* @media screen and (max-width: 1000) { 
-    .ui-nav-left {
-        float: left;
-        font-size: 900%;
-        padding-left: 2%;
-    }
-    
-    .ui-nav-right {
-        padding-left: 2%;
-        padding-right: 2%;
-        float: right;
-        font-size: 90%;
-        
-    }    
-} */
+
 .ui-nav-li-a {
     display: block;
     color: white;
     text-align: center;
     padding-top: 14px;
     padding-bottom:16px;
-    /* margin-left:10px; */
     width:100%;
     text-decoration: none;
 }
@@ -583,9 +559,8 @@ li {
 #chart-container {
     margin: auto;
     display: flex;
-    /* justify-content: center; */
     background-color: white;
-     width:800px;
+    width:800px;
 
 }
 #total-points-earned{
@@ -602,14 +577,12 @@ li {
     position: absolute;
     width:90px;
     bottom: 0;
-    left: 50;
     color: black;
 }
 .yaxis {
     position: absolute;
     width:90px;
     bottom: 0;
-    left: 50;
     color: black;
 }
 .points {
@@ -624,7 +597,6 @@ li {
     color: black;
 }
 .xaxis {
-    /* margin-right: auto; */
     width: 700px;
     height: 30px;
     background-color: white;
@@ -653,24 +625,14 @@ canvas {
 .all-charts {
     background-color: white;  
     width:700px;
-    /* margin: auto;  */
     display: flex;
 }
 #chartbox1 {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 15px;*/
     max-height: 600px;
     overflow-y: scroll;
 }
 .show-student-name {
-    /* margin: auto; */
-    text-align: center;
     color: white;
-    /* background-color: white; */
-    /* flex: 0 50% */
-
 }
 #answer-chart-xaxis {
     background-color: white;
