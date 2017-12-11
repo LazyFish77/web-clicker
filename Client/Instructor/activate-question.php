@@ -1,5 +1,5 @@
 <?PHP
-// ini_set('display_errors', 1);
+
 require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
 require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");
@@ -17,15 +17,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $question = new Question();
         $question->id = $_POST['questionid'];
 
-        try {
-            $result = $questionCtrl->ActivateQuestion($question);
-            // $result = $questionCtrl->DeactivateQuestion($question);
-            $questionCtrl->Dispose();
-        } catch (Exception $e) {
-            // TODO, remove before production
-            echo $e->getMessage();
-            $questionCtrl->Dispose();
-        }
+        $result = $questionCtrl->ActivateQuestion($question);
+        $questionCtrl->Dispose();
     }
 }
 ?>
@@ -47,10 +40,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
              echo "<h1 class='createquestionresponse'><span id='success'>Your question has been activated! Question id is: $question->id </span></h1>";
              echo "<a class='createquestionresponse' href='activate-question-results.php'>Click to close question</a>";
              echo "<div id='countdowncontainer'><label>Timer:</label> <label id='countdown'></label></div>";
-            //  $db = new Database();
-            //  $questionController = new QuestionController($db);
-            //  $question = $questionController->GetQuestion($_POST["questionid"]);
-            //  print_r($question);
         } else {
              echo "<h1 class='createquestionresponse'><span id='fail'>Your question failed to activate! Question id is: $question->id </span></h1>";
              echo "<a class='createquestionresponse' href='display-question.php'>Click to return</a>";

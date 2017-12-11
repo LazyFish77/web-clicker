@@ -6,7 +6,7 @@ require_once(realpath(dirname(__FILE__)) . "/../../API/Controllers/UserControlle
 $session = new Session();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // $session->LogIn($_POST['username'], $_POST['password']);
+
     if($_POST['newpassword'] !== $_POST['confirmpassword']) {
         $session->SetMessage("new passwords do not match");
     }
@@ -20,8 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $session->SetMessage("Password change failed");
     }
-} else {
-    $session->ClearMessage();
 }
 ?>
 <!DOCTYPE html>
@@ -79,3 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      ?>
 </body>
 </html>
+<?PHP
+$session->ClearMessage();
+?>

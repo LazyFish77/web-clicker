@@ -48,7 +48,7 @@ class UserController extends BaseController {
         // Hash the user's cleartext password and insert into the DB
         $model->password = hash(self::HASH_ALGORITHM, $model->password);
 
-        echo $this->userService->Insert($model);
+        $this->userService->Insert($model);
 
         return $model;
     }
