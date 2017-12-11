@@ -79,9 +79,13 @@
                         }
                         echo "</ol>";
                     } else if ($question->question_type == QuestionController::TYPE_RADIO) {
+                        $i = 97; // ASCII code for "a", so each input element has a unique name
+                        $options = preg_split("/\|\|/", $question->options);
                         echo "<ol>";
-                            echo "<li><label><input type=\"radio\" name=\"single\" value=\"a\" />True</label></li>";
-                            echo "<li><label><input type=\"radio\" name=\"single\" value=\"b\" />False</label></li>";
+                        foreach ($options as $option) {
+                            $option = trim($option);
+                            echo  "<li><label><input type=\"radio\" name=\"single\" value=\"". chr($i++) . "\"/>" . $option . "</label></li>";
+                        }
                         echo "</ol>";
                     } else if ($question->question_type == QuestionController::TYPE_SHORT_ANSWER) {
                         echo "<label>Type your answer: <input type=\"text\" name=\"short\" /></label>";
