@@ -523,21 +523,21 @@ li {
     font-size: 90%;
     
 }
-@media screen and (max-width: 1000) { 
+/* @media screen and (max-width: 1000) { 
     .ui-nav-left {
         float: left;
         font-size: 900%;
         padding-left: 2%;
     }
     
-.ui-nav-right {
-    padding-left: 2%;
-    padding-right: 2%;
-    float: right;
-    font-size: 90%;
-    
-}    
-}
+    .ui-nav-right {
+        padding-left: 2%;
+        padding-right: 2%;
+        float: right;
+        font-size: 90%;
+        
+    }    
+} */
 .ui-nav-li-a {
     display: block;
     color: white;
@@ -579,21 +579,19 @@ li {
 
 }
 
-
-
 }
 #chart-container {
     margin: auto;
     display: flex;
     /* justify-content: center; */
     background-color: white;
-     width:500px;
+     width:800px;
 
 }
 #total-points-earned{
     position: relative;
     height: 400px;
-    width:100px;
+    width:800px;
 }
 .yaxisContainer{
     position: relative;
@@ -619,22 +617,21 @@ li {
 }
 #xaxis {
     margin: auto;
-    width: 400px;
+    width: 800px;
     height: 30px;
     padding-left: 100px;
     background-color: white;
     color: black;
 }
 .xaxis {
-    margin: auto;
-    width: 300px;
+    /* margin-right: auto; */
+    width: 700px;
     height: 30px;
-    padding-left: 100px;
     background-color: white;
     color: black;
 }
 #firstx {
-    margin-left: 30px;
+    margin-left: 0px;
 }
 .xvalues {
     margin-left: 24px;
@@ -643,7 +640,8 @@ canvas {
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     height: 400px;
-    width: 400px;
+    width: 800px;
+     flex: 0 50%
 }
 #show-chart {
     display: none;
@@ -654,19 +652,20 @@ canvas {
 
 .all-charts {
     background-color: white;  
-    width:400px;
-    margin: auto; 
+    width:700px;
+    /* margin: auto;  */
     display: flex;
 }
 #chartbox1 {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 15px;
+    margin-top: 15px;*/
     max-height: 600px;
     overflow-y: scroll;
 }
 .show-student-name {
+    /* margin: auto; */
     text-align: center;
     color: white;
     /* background-color: white; */
@@ -687,7 +686,7 @@ canvas {
     background-color: white;
     display: flex;
     justify-content: center;
-    width: 600px;
+    width: 800px;
     height: 600px;
     margin: auto;
 }
