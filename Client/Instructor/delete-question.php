@@ -6,8 +6,6 @@ require_once(realpath(dirname(__FILE__)) . "/../../Shared/Models/Question.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dbContext = new Database();
     $questionCtrl = new QuestionController($dbContext);
-    // $question = new Question();
-    // $question->id = $_POST['id'];
 
     try {        
         $result = $questionCtrl->DeleteQuestion($_POST['id']);

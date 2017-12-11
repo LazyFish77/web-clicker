@@ -44,7 +44,6 @@ class QuestionController extends BaseController {
      */
     public function UpdateQuestion(Question $question) {
         if(!$question->IsValid()) {
-            echo "invalid model";
             return null;
         }
 

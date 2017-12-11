@@ -20,9 +20,5 @@
         $response = json_encode($response);
         echo "$response";
     }
-    
-    // echo "$val";
-    // echo"";
-    // echo"$answers";
 
 ?>

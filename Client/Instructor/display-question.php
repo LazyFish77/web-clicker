@@ -16,8 +16,6 @@
 
 <body>
     <?php require_once("../General/instructor-nav.php") ?>
-    <!-- <div class="flexbox"> -->
-        <!-- <div class="flexchild"> -->
             <div id="activate-question-container">
                 <h1 class="loginheader2">Activate Question</h1>
                 <form id="mediumform" class="container" action="activate-question.php" method="POST">
@@ -29,8 +27,6 @@
                     <input type="reset" />
                 </form>
             </div>
-        <!-- </div> -->
-    <!-- </div> -->
     <?php require_once('../General/footer.php')?>
 </body>
 

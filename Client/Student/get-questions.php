@@ -1,5 +1,4 @@
 <?php
- ini_set('display_errors', 1);
     require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Config.php");
     require_once(realpath(dirname(__FILE__)) . "/../../API/Database/Database.php");

@@ -1,5 +1,4 @@
 <?PHP
-// ini_set('display_errors', 1); // DEBUG
 require_once(realpath(dirname(__FILE__)) . "/../General/Session.php");
 $session = new Session();
 
